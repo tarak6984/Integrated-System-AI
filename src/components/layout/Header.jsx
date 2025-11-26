@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, LogOut, LayoutDashboard } from 'lucide-react'
 import Button from '../ui/Button'
+import { useAuth } from '../../context/AuthContext'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { user, logout, isAuthenticated } = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,7 +69,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {navItems.map((item) => (
+            {location.pathname === '/' && navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -80,9 +84,49 @@ const Header = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all group-hover:w-full"></span>
               </a>
             ))}
-            <Button variant="primary" size="sm" href="#contact" onClick={(e) => scrollToSection(e, '#contact')}>
-              Get Started
-            </Button>
+            
+            {!isAuthenticated ? (
+              <>
+                <Link to="/login">
+                  <Button 
+                    variant={isScrolled ? "outline" : "secondary"} 
+                    size="sm"
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button variant="primary" size="sm">
+                    Sign Up
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/dashboard">
+                  <Button 
+                    variant={isScrolled ? "outline" : "secondary"} 
+                    size="sm"
+                    className="flex items-center gap-2"
+                  >
+                    <LayoutDashboard size={16} />
+                    Dashboard
+                  </Button>
+                </Link>
+                <Button 
+                  variant="primary" 
+                  size="sm"
+                  onClick={async () => {
+                    await logout()
+                    navigate('/')
+                  }}
+                  className="flex items-center gap-2"
+                >
+                  <LogOut size={16} />
+                  Logout
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -110,7 +154,7 @@ const Header = () => {
             className="lg:hidden bg-white border-t border-dark-100 overflow-hidden"
           >
             <div className="container-custom py-4 space-y-4">
-              {navItems.map((item) => (
+              {location.pathname === '/' && navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
@@ -120,15 +164,55 @@ const Header = () => {
                   {item.name}
                 </a>
               ))}
-              <Button 
-                variant="primary" 
-                size="sm" 
-                className="w-full" 
-                href="#contact"
-                onClick={(e) => scrollToSection(e, '#contact')}
-              >
-                Get Started
-              </Button>
+              
+              {!isAuthenticated ? (
+                <>
+                  <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button 
+                      variant="secondary" 
+                      size="sm" 
+                      className="w-full"
+                    >
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to="/signup" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button 
+                      variant="primary" 
+                      size="sm" 
+                      className="w-full"
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button 
+                      variant="secondary" 
+                      size="sm"
+                      className="w-full flex items-center justify-center gap-2"
+                    >
+                      <LayoutDashboard size={16} />
+                      Dashboard
+                    </Button>
+                  </Link>
+                  <Button 
+                    variant="primary" 
+                    size="sm"
+                    className="w-full flex items-center justify-center gap-2"
+                    onClick={async () => {
+                      await logout()
+                      navigate('/')
+                      setIsMobileMenuOpen(false)
+                    }}
+                  >
+                    <LogOut size={16} />
+                    Logout
+                  </Button>
+                </>
+              )}
             </div>
           </motion.div>
         )}

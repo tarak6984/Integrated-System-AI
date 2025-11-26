@@ -25,3 +25,11 @@ dist-ssr
 
 # Temporary files
 tmp_rovodev_*
+
+# Environment variables
+.env
+
+# Database
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
