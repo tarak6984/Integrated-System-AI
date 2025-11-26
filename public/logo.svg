@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <!-- Integrated -->
+  <text x="5" y="30" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#000000" letter-spacing="-0.5">Integrated</text>
+  <!-- Systems -->
+  <text x="5" y="58" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#000000" letter-spacing="-0.5">Systems</text>
+  <!-- .ai in italic -->
+  <text x="155" y="58" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="300" fill="#000000" font-style="italic">.ai</text>
+</svg>
