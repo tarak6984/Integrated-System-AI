@@ -1,0 +1,11 @@
+node_modules/
+.git/
+dist/
+*.log
+.env
+.DS_Store
+src/
+public/
+index.html
+*.md
+!BACKEND_README.md
