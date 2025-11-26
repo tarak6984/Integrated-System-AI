@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles, Zap, Globe } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import Button from '../ui/Button'
 
 const Hero = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false)
+
   const floatingIcons = [
     { Icon: Sparkles, delay: 0, position: 'top-20 left-10' },
     { Icon: Zap, delay: 0.2, position: 'top-40 right-20' },
@@ -14,12 +17,18 @@ const Hero = () => {
       {/* Background Video with Overlay */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-dark-900/60 via-primary-900/50 to-dark-800/60 z-10"></div>
+        {/* Fallback background while video loads */}
+        <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-primary-900 to-dark-800"></div>
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-70"
+          preload="auto"
+          onLoadedData={() => setVideoLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            videoLoaded ? 'opacity-70' : 'opacity-0'
+          }`}
         >
           <source src="/hero-background.mp4" type="video/mp4" />
         </video>
