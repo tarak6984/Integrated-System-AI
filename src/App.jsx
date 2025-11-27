@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './components/auth/ProtectedRoute'
+import AIChatbot from './components/features/AIChatbot'
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           } 
         />
       </Routes>
+      {/* Global AI Chatbot - Available on all pages */}
+      <AIChatbot />
     </AuthProvider>
   )
 }

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Mail, ArrowRight, MessageSquare } from 'lucide-react'
 import Button from '../ui/Button'
 import SectionTitle from '../ui/SectionTitle'
+import EnhancedContactForm from '../features/EnhancedContactForm'
 
 const Contact = () => {
   return (
@@ -13,6 +14,33 @@ const Contact = () => {
           gradient={true}
           centered={true}
         />
+
+        {/* Enhanced Contact Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto mb-16"
+        >
+          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-200">
+            <div className="text-center mb-8">
+              <motion.div 
+                className="inline-flex p-4 bg-primary-100 rounded-2xl mb-4"
+                initial={{ scale: 0, rotate: -180 }}
+                whileInView={{ scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, type: "spring" }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+              >
+                <MessageSquare className="w-8 h-8 text-primary-600" />
+              </motion.div>
+              <h3 className="text-2xl font-bold text-dark-900 mb-2">Send Us a Message</h3>
+              <p className="text-dark-600">We'll get back to you within 24 hours</p>
+            </div>
+            <EnhancedContactForm />
+          </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}

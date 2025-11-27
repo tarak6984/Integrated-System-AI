@@ -3,6 +3,9 @@ import { User, Mail, Calendar, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
+import AnalyticsDashboard from '../components/features/AnalyticsDashboard';
+import NewsFeed from '../components/features/NewsFeed';
+import GlobalMap from '../components/features/GlobalMap';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -14,95 +17,98 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 px-4 py-12">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/20"
+          className="bg-gradient-to-r from-primary-600 via-primary-700 to-accent-600 rounded-2xl shadow-xl p-6 mb-8"
         >
-          <div className="flex justify-between items-start mb-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
-              <h1 className="text-4xl font-bold text-white mb-2">Dashboard</h1>
-              <p className="text-gray-300">Welcome back, {user?.name}!</p>
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                Welcome back, {user?.name}! 👋
+              </h1>
+              <p className="text-primary-100">
+                Your comprehensive AI analytics and insights dashboard
+              </p>
             </div>
             <Button
               onClick={handleLogout}
               variant="secondary"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white border-white/30"
             >
               <LogOut className="w-5 h-5" />
               Logout
             </Button>
           </div>
+        </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="bg-white/5 rounded-xl p-6 border border-white/10"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                  <User className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white">Full Name</h3>
-                  <p className="text-gray-300">{user?.name}</p>
-                </div>
+        {/* User Info Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="grid md:grid-cols-3 gap-4 mb-8"
+        >
+          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center">
+                <User className="w-6 h-6 text-white" />
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="bg-white/5 rounded-xl p-6 border border-white/10"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white">Email</h3>
-                  <p className="text-gray-300">{user?.email}</p>
-                </div>
+              <div>
+                <h3 className="text-sm font-medium text-dark-600">Full Name</h3>
+                <p className="text-lg font-semibold text-dark-900">{user?.name}</p>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="bg-white/5 rounded-xl p-6 border border-white/10 md:col-span-2"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
-                  <Calendar className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white">Account Info</h3>
-                  <p className="text-gray-300">User ID: {user?.id}</p>
-                </div>
-              </div>
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-8 p-6 bg-blue-500/20 rounded-xl border border-blue-500/30"
-          >
-            <h3 className="text-xl font-semibold text-white mb-2">
-              🎉 Welcome to Your Dashboard!
-            </h3>
-            <p className="text-gray-300">
-              You have successfully signed in. This is your personal dashboard where you can manage your account and access exclusive features.
-            </p>
-          </motion.div>
+          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center">
+                <Mail className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-dark-600">Email</h3>
+                <p className="text-lg font-semibold text-dark-900 truncate">{user?.email}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center">
+                <Calendar className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-dark-600">User ID</h3>
+                <p className="text-lg font-semibold text-dark-900">{user?.id}</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Analytics Dashboard */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mb-8"
+        >
+          <AnalyticsDashboard />
+        </motion.div>
+
+        {/* Global Map & News Feed */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="grid lg:grid-cols-2 gap-6"
+        >
+          <GlobalMap />
+          <NewsFeed />
         </motion.div>
       </div>
     </div>
