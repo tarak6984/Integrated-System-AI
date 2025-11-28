@@ -2,7 +2,12 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import authRoutes from './routes/authRoutes.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -35,13 +40,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Routes
+// API Routes
 app.use('/api/auth', authRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
 });
+
+// Serve static files from the React build directory in production
+if (process.env.NODE_ENV === 'production') {
+  const distPath = path.join(__dirname, '../dist');
+  app.use(express.static(distPath));
+  
+  // Handle React routing - serve index.html for all non-API routes
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -52,6 +68,9 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Backend server is running on port ${PORT}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
   console.log(`📡 API available at: http://localhost:${PORT}/api`);
+  if (process.env.NODE_ENV === 'production') {
+    console.log(`🌐 Frontend served from: http://localhost:${PORT}`);
+  }
 });
