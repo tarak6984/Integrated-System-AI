@@ -41,7 +41,7 @@ const CoreValues = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center text-xl text-dark-600 max-w-4xl mx-auto mb-16"
+          className="text-center text-base sm:text-lg md:text-xl text-dark-600 max-w-4xl mx-auto mb-12 sm:mb-16"
         >
           Our AI systems are built to work alongside your teams — automating repetitive tasks, 
           uncovering data-driven insights, and improving the speed and quality of decision-making.
@@ -61,7 +61,7 @@ const CoreValues = () => {
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                <div className="relative p-8 rounded-2xl border-2 border-dark-100 group-hover:border-primary-300 transition-all duration-300 bg-white h-full">
+                <div className="relative p-6 sm:p-8 rounded-2xl border-2 border-dark-100 group-hover:border-primary-300 transition-all duration-300 bg-white h-full">
                   <motion.div 
                     className="inline-flex p-3 rounded-xl bg-primary-100 text-primary-600 mb-4"
                     whileHover={{ scale: 1.2, rotate: 360 }}
@@ -71,7 +71,7 @@ const CoreValues = () => {
                   </motion.div>
                   
                   <motion.h3 
-                    className="text-xl font-bold font-display text-dark-900 mb-3"
+                    className="text-lg sm:text-xl font-bold font-display text-dark-900 mb-3"
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -80,7 +80,7 @@ const CoreValues = () => {
                     {value.title}
                   </motion.h3>
                   
-                  <p className="text-dark-600 leading-relaxed">
+                  <p className="text-dark-600 text-sm sm:text-base leading-relaxed">
                     {value.description}
                   </p>
                 </div>
@@ -102,7 +102,7 @@ const CoreValues = () => {
             {['Logistics', 'Manufacturing', 'Healthcare', 'Finance', 'Agriculture'].map((industry, index) => (
               <span
                 key={index}
-                className="px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
                 {industry}
               </span>

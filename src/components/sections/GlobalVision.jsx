@@ -49,7 +49,7 @@ const GlobalVision = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center text-xl text-dark-600 max-w-4xl mx-auto mb-16"
+          className="text-center text-base sm:text-lg md:text-xl text-dark-600 max-w-4xl mx-auto mb-12 sm:mb-16"
         >
           With Bangladesh as our core engineering and support hub, we combine technical expertise 
           with cost-effective scalability. Our operational model allows us to rapidly develop, test, 
@@ -67,7 +67,7 @@ const GlobalVision = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05, y: -10 }}
             >
-              <Card className="p-6 text-center hover:shadow-xl">
+              <Card className="p-4 sm:p-6 text-center hover:shadow-xl">
                 <motion.div 
                   className="text-5xl mb-4"
                   initial={{ scale: 0, rotate: -180 }}
@@ -78,7 +78,7 @@ const GlobalVision = () => {
                   {region.icon}
                 </motion.div>
                 <motion.h3 
-                  className="text-xl font-bold text-dark-900 mb-2"
+                  className="text-lg sm:text-xl font-bold text-dark-900 mb-2"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -87,7 +87,7 @@ const GlobalVision = () => {
                   {region.name}
                 </motion.h3>
                 <motion.p 
-                  className="text-primary-600 font-semibold"
+                  className="text-primary-600 text-sm sm:text-base font-semibold"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
@@ -107,7 +107,7 @@ const GlobalVision = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold font-display text-center text-dark-900 mb-12"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold font-display text-center text-dark-900 mb-8 sm:mb-12"
           >
             Our Long-Term Vision
           </motion.h3>
@@ -128,8 +128,8 @@ const GlobalVision = () => {
                     <Icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-dark-900 mb-2">{objective.title}</h4>
-                    <p className="text-dark-600 leading-relaxed">{objective.description}</p>
+                    <h4 className="text-lg sm:text-xl font-bold text-dark-900 mb-2">{objective.title}</h4>
+                    <p className="text-dark-600 text-sm sm:text-base leading-relaxed">{objective.description}</p>
                   </div>
                 </motion.div>
               )
@@ -145,8 +145,8 @@ const GlobalVision = () => {
           transition={{ duration: 0.6 }}
           className="mt-16 text-center"
         >
-          <Card className="p-12 bg-gradient-to-br from-primary-50 to-accent-50 border-2 border-primary-200" hover={false}>
-            <p className="text-2xl md:text-3xl font-bold text-dark-900 leading-relaxed">
+          <Card className="p-6 sm:p-8 md:p-12 bg-gradient-to-br from-primary-50 to-accent-50 border-2 border-primary-200" hover={false}>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-dark-900 leading-relaxed">
               Integrated Systems AI aims to be more than a product company. 
               We are building a <span className="text-gradient">platform for sustainable AI innovation</span>.
             </p>

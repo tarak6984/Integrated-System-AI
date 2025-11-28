@@ -31,7 +31,7 @@ const SectionTitle = ({
           {subtitle}
         </motion.p>
       )}
-      <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold font-display ${
+      <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display ${
           gradient ? 'text-gradient' : 'text-dark-900'
         }`}
       >

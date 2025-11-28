@@ -76,7 +76,7 @@ const Services = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="h-full p-8 hover:shadow-2xl transition-shadow duration-300">
+                <Card className="h-full p-6 sm:p-8 hover:shadow-2xl transition-shadow duration-300">
                   <motion.div 
                     className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${colors.gradient} mb-6 shadow-lg`}
                     initial={{ scale: 0, rotate: -180 }}
@@ -88,7 +88,7 @@ const Services = () => {
                   </motion.div>
                   
                   <motion.h3 
-                    className="text-2xl font-bold font-display text-dark-900 mb-4"
+                    className="text-xl sm:text-2xl font-bold font-display text-dark-900 mb-4"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -97,7 +97,7 @@ const Services = () => {
                     {service.title}
                   </motion.h3>
                   
-                  <p className="text-dark-600 leading-relaxed mb-6">
+                  <p className="text-dark-600 text-base leading-relaxed mb-6">
                     {service.description}
                   </p>
 
