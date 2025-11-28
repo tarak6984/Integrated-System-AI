@@ -98,10 +98,10 @@ const WhyChooseUs = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-16 text-center bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl p-12 shadow-2xl"
         >
-          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Transform Your Operations?
           </h3>
-          <p className="text-xl text-primary-50 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-primary-50 max-w-3xl mx-auto">
             Whether you're looking to modernize your operations, automate key processes, 
             or explore the transformative power of AI in your sector — we're here to build with you.
           </p>

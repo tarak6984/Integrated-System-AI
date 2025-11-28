@@ -17,7 +17,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -28,10 +28,10 @@ const Dashboard = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
                 Welcome back, {user?.name}! 👋
               </h1>
-              <p className="text-primary-100">
+              <p className="text-sm sm:text-base text-primary-100">
                 Your comprehensive AI analytics and insights dashboard
               </p>
             </div>

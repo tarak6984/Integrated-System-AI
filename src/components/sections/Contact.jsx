@@ -49,7 +49,7 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto"
         >
-          <div className="bg-gradient-to-br from-primary-600 via-primary-700 to-accent-600 rounded-3xl p-12 md:p-16 shadow-2xl relative overflow-hidden">
+          <div className="bg-gradient-to-br from-primary-600 via-primary-700 to-accent-600 rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 shadow-2xl relative overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
@@ -68,7 +68,7 @@ const Contact = () => {
                 </motion.div>
                 
                 <motion.h3 
-                  className="text-3xl md:text-4xl font-bold text-white mb-4"
+                  className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -88,7 +88,7 @@ const Contact = () => {
                   ))}
                 </motion.h3>
                 
-                <p className="text-xl text-primary-50 max-w-2xl mx-auto mb-8">
+                <p className="text-base sm:text-lg md:text-xl text-primary-50 max-w-2xl mx-auto mb-6 sm:mb-8">
                   Whether you're looking to modernize your operations, automate key processes, 
                   or explore the transformative power of AI in your sector — we're here to help.
                 </p>
@@ -97,11 +97,11 @@ const Contact = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
                   href="mailto:buildwith@integratedsystems.ai"
-                  className="group inline-flex items-center justify-center px-8 py-4 bg-white text-primary-700 font-semibold rounded-lg hover:bg-primary-50 transition-all duration-200 shadow-lg hover:shadow-xl w-full sm:w-auto"
+                  className="group inline-flex items-center justify-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-white text-primary-700 font-semibold rounded-lg hover:bg-primary-50 transition-all duration-200 shadow-lg hover:shadow-xl w-full sm:w-auto text-sm sm:text-base"
                 >
-                  <Mail className="mr-3 w-5 h-5" />
-                  buildwith@integratedsystems.ai
-                  <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <Mail className="mr-2 sm:mr-3 w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                  <span className="truncate">buildwith@integratedsystems.ai</span>
+                  <ArrowRight className="ml-2 sm:ml-3 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </a>
               </div>
 

@@ -75,7 +75,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold font-display text-white mb-6 leading-tight text-shadow-lg"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-display text-white mb-6 leading-tight text-shadow-lg"
           >
             <motion.span
               initial={{ opacity: 0, x: -20 }}
@@ -111,7 +111,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.0 }}
-            className="text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto leading-relaxed text-shadow"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed text-shadow px-4 sm:px-0"
           >
             <motion.span
               initial={{ opacity: 0 }}
@@ -212,13 +212,13 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 2.3 + (index * 0.1) }}
                 whileHover={{ scale: 1.05, y: -10 }}
-                className="bg-white/15 backdrop-blur-md rounded-xl p-8 border border-white/30 shadow-2xl"
+                className="bg-white/15 backdrop-blur-md rounded-xl p-4 sm:p-6 md:p-8 border border-white/30 shadow-2xl"
               >
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 2.4 + (index * 0.1) }}
-                  className="text-4xl font-extrabold text-cyan-400 mb-3"
+                  className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-cyan-400 mb-2 sm:mb-3"
                 >
                   {stat.value}
                 </motion.div>
@@ -226,7 +226,7 @@ const Hero = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 2.5 + (index * 0.1) }}
-                  className="text-lg font-bold text-cyan-300"
+                  className="text-sm sm:text-base md:text-lg font-bold text-cyan-300"
                 >
                   {stat.label}
                 </motion.div>
