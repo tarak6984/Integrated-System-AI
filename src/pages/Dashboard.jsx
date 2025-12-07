@@ -72,7 +72,7 @@ const Dashboard = () => {
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="text-sm font-medium text-gray-400 mb-1">Email</h3>
-                <p className="text-lg font-bold text-white truncate">{user?.email}</p>
+                <p className="text-lg font-bold text-white break-all">{user?.email}</p>
               </div>
             </div>
           </div>

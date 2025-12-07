@@ -96,21 +96,18 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="block mb-4" style={{ minHeight: '1.2em' }}>
+            <div className="block mb-4">
               <motion.span 
-                className="text-white" 
+                className="text-white block" 
                 style={{ 
                   textShadow: '0 4px 20px rgba(0, 0, 0, 0.9)',
                   fontWeight: '900',
-                  letterSpacing: '-0.02em',
-                  overflow: 'hidden',
-                  whiteSpace: 'nowrap',
-                  display: 'inline-block'
+                  letterSpacing: '-0.02em'
                 }}
-                initial={{ width: 0 }}
-                animate={{ width: '100%' }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ 
-                  duration: 1.5, 
+                  duration: 1, 
                   delay: 0.5,
                   ease: "easeInOut"
                 }}
@@ -119,26 +116,21 @@ const Hero = () => {
               </motion.span>
             </div>
             
-            <div className="block" style={{ minHeight: '1.2em' }}>
+            <div className="block">
               <motion.span 
-                className="text-gradient-cyber font-black"
+                className="text-gradient-cyber font-black block"
                 style={{ 
                   textShadow: '0 4px 20px rgba(0, 0, 0, 0.9)',
-                  letterSpacing: '-0.02em',
-                  overflow: 'hidden',
-                  whiteSpace: 'nowrap',
-                  display: 'inline-block'
+                  letterSpacing: '-0.02em'
                 }}
-                initial={{ width: 0 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ 
-                  width: ['0%', '100%', '100%', '0%'],
+                  opacity: [0, 1, 1],
+                  y: [20, 0, 0]
                 }}
                 transition={{ 
-                  duration: 4,
-                  delay: 2,
-                  times: [0, 0.4, 0.8, 1],
-                  repeat: Infinity,
-                  repeatDelay: 1,
+                  duration: 2,
+                  delay: 1.5,
                   ease: "easeInOut"
                 }}
               >

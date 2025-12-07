@@ -106,7 +106,7 @@ const Contact = () => {
                   className="group inline-flex items-center justify-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-white text-primary-700 font-semibold rounded-lg hover:bg-primary-50 transition-all duration-200 shadow-lg hover:shadow-xl w-full sm:w-auto text-sm sm:text-base"
                 >
                   <Mail className="mr-2 sm:mr-3 w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                  <span className="truncate">buildwith@integratedsystems.ai</span>
+                  <span className="break-all">buildwith@integratedsystems.ai</span>
                   <ArrowRight className="ml-2 sm:ml-3 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </a>
               </div>
