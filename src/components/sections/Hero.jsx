@@ -27,7 +27,7 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
       {/* Space background is now global - no local canvas needed */}
 
-      {/* Neural-Starlink Vision Video - OPTIMIZED FOR FAST LOADING */}
+      {/* Neural-Starlink Vision Video - CLOUDINARY CDN */}
       <div className="absolute inset-0 z-10">
         <video
           autoPlay
@@ -36,7 +36,11 @@ const Hero = () => {
           playsInline
           preload="auto"
           onLoadedData={() => setVideoLoaded(true)}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          onError={(e) => {
+            console.error('Video failed to load:', e);
+            setVideoLoaded(true); // Show content even if video fails
+          }}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
             videoLoaded ? 'opacity-50' : 'opacity-0'
           }`}
           style={{ 
@@ -50,8 +54,10 @@ const Hero = () => {
           disableRemotePlayback
           webkit-playsinline="true"
         >
-          {/* Cloudinary CDN - Optimized with reduced bitrate for faster initial load */}
-          <source src="https://res.cloudinary.com/di5dut3x2/video/upload/q_auto:low,f_auto,w_1920,br_1000k,vc_h264/neural-starlink-vision_ifjl2k.mp4" type="video/mp4" />
+          {/* Cloudinary CDN - Simple URL without complex transformations */}
+          <source src="https://res.cloudinary.com/di5dut3x2/video/upload/neural-starlink-vision_ifjl2k.mp4" type="video/mp4" />
+          {/* Fallback to local video if Cloudinary fails */}
+          <source src="/neural-starlink-vision.mp4" type="video/mp4" />
         </video>
         
         {/* Lighter Gradient Overlays - More Video Visible */}
