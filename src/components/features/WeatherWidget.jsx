@@ -10,6 +10,7 @@ const WeatherWidget = ({ city = 'London' }) => {
   useEffect(() => {
     // Using demo data - replace with actual OpenWeatherMap API if needed
     loadWeather();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [city]);
 
   const loadWeather = async () => {

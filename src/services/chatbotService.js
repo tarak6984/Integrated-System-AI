@@ -123,7 +123,7 @@ export const chatbotService = {
     });
   },
 
-  generateResponse(intent, message, history) {
+  generateResponse(intent, message) {
     const { company, services, industries, benefits } = this.knowledgeBase;
 
     switch (intent) {
@@ -133,28 +133,33 @@ export const chatbotService = {
       case 'services_general':
         return `We offer four comprehensive services:\n\n1. **AI Research & Development** - Advanced R&D with our dual UK-Bangladesh setup\n2. **Integrated AI Solutions** - Smart automation that seamlessly integrates with your systems\n3. **Branded Ventures** - Public-facing SaaS platforms and enterprise APIs\n4. **Shadow Ventures** - Stealth-mode companies for niche markets\n\nWhich service interests you most?`;
 
-      case 'service_rd':
+      case 'service_rd': {
         const rd = services[0];
         return `**${rd.name}**\n\n${rd.description}. Our dual-office structure combines strategic vision from our UK headquarters with cost-effective development in our Bangladesh engineering hub.\n\nKey features: ${rd.features.join(', ')}.\n\nWould you like to know more about how we can help with your AI R&D needs?`;
+      }
 
-      case 'service_integration':
+      case 'service_integration': {
         const integrated = services[1];
         return `**${integrated.name}**\n\n${integrated.description}. We build automation agents that improve performance, reduce operational friction, and elevate decision-making.\n\nBenefits: ${integrated.features.join(', ')}.\n\nLet me know if you'd like to discuss integration for your specific use case!`;
+      }
 
-      case 'service_branded':
+      case 'service_branded': {
         const branded = services[2];
         return `**${branded.name}**\n\n${branded.description} tailored for specific industries.\n\nWe serve: ${branded.sectors.join(', ')}.\n\nThese are ready-to-deploy solutions designed to solve industry-specific challenges. Which sector are you in?`;
+      }
 
-      case 'service_shadow':
+      case 'service_shadow': {
         const shadow = services[3];
         return `**${shadow.name}**\n\n${shadow.description}. These are incubated and operated using our Bangladesh infrastructure, designed to target ${shadow.focus}.\n\nThis allows us to explore innovative solutions without direct public association to the main brand. Interested in learning more?`;
+      }
 
-      case 'industries':
+      case 'industries': {
         const industryMatch = Object.keys(industries).find(ind => message.includes(ind));
         if (industryMatch) {
           return `**${industryMatch.charAt(0).toUpperCase() + industryMatch.slice(1)} Solutions**\n\nFor the ${industryMatch} sector, we provide: ${industries[industryMatch]}.\n\nWe understand the unique challenges in ${industryMatch} and have developed specialized AI tools to address them. Would you like to discuss a specific challenge you're facing?`;
         }
         return `We serve five major industries:\n\n🏭 **Manufacturing** - Quality control, predictive maintenance\n📦 **Logistics** - Route optimization, warehouse automation\n💰 **Finance** - Fraud detection, risk analysis\n🏥 **Healthcare** - Diagnostic assistance, data analysis\n🌾 **Agriculture** - Crop monitoring, precision farming\n\nWhich industry are you interested in?`;
+      }
 
       case 'location':
         return `**Our Global Presence**\n\n🇬🇧 **UK Headquarters** - Strategic vision and client relations\n🇧🇩 **Bangladesh Operations Hub** - R&D, development, and engineering\n\nThis dual presence allows us to combine global expertise with cost-effective execution. We serve clients in 25+ countries worldwide!`;

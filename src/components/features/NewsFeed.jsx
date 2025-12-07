@@ -43,15 +43,17 @@ const NewsFeed = () => {
     return (
       <Card className="p-6">
         <div className="flex items-center gap-3 mb-6">
-          <TrendingUp className="w-6 h-6 text-primary-600" />
-          <h2 className="text-2xl font-bold text-dark-900">Latest AI News</h2>
+          <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center shadow-lg glow-cyan">
+            <TrendingUp className="w-6 h-6 text-white" />
+          </div>
+          <h2 className="text-2xl font-bold text-white">Latest AI News</h2>
         </div>
         <div className="space-y-4">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="animate-pulse">
-              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-              <div className="h-3 bg-gray-200 rounded w-full mb-2"></div>
-              <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+            <div key={i} className="animate-pulse bg-gray-800/30 rounded-xl p-4 border border-gray-700/50">
+              <div className="h-4 bg-gray-700/50 rounded w-3/4 mb-3"></div>
+              <div className="h-3 bg-gray-700/50 rounded w-full mb-2"></div>
+              <div className="h-3 bg-gray-700/50 rounded w-1/2"></div>
             </div>
           ))}
         </div>
@@ -62,7 +64,7 @@ const NewsFeed = () => {
   if (error) {
     return (
       <Card className="p-6">
-        <div className="text-center text-red-600">{error}</div>
+        <div className="text-center text-red-400 font-semibold bg-red-500/20 p-4 rounded-lg border border-red-500/30">{error}</div>
       </Card>
     );
   }
@@ -71,14 +73,14 @@ const NewsFeed = () => {
     <Card className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
-            <TrendingUp className="w-5 h-5 text-white" />
+          <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center shadow-lg glow-cyan">
+            <TrendingUp className="w-6 h-6 text-white" />
           </div>
-          <h2 className="text-2xl font-bold text-dark-900">Latest AI News</h2>
+          <h2 className="text-2xl font-bold text-white">Latest AI News</h2>
         </div>
         <button 
           onClick={loadNews}
-          className="text-sm text-primary-600 hover:text-primary-700 font-medium"
+          className="text-sm text-primary-400 hover:text-primary-300 font-bold bg-primary-500/20 px-3 py-2 rounded-lg hover:bg-primary-500/30 transition-all"
         >
           Refresh
         </button>
@@ -96,10 +98,10 @@ const NewsFeed = () => {
             transition={{ delay: index * 0.1 }}
             className="block group"
           >
-            <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-4 hover:shadow-lg transition-all duration-300 hover:border-primary-300">
+            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-2 border-gray-700/50 rounded-xl p-4 hover:shadow-2xl hover:shadow-primary-500/20 transition-all duration-300 hover:border-primary-500/50">
               <div className="flex gap-4">
                 {article.urlToImage && (
-                  <div className="flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden bg-gray-200">
+                  <div className="flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden bg-gray-700/50 border border-gray-600/50">
                     <img 
                       src={article.urlToImage} 
                       alt={article.title}
@@ -112,25 +114,25 @@ const NewsFeed = () => {
                 )}
                 
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-dark-900 mb-2 line-clamp-2 group-hover:text-primary-600 transition-colors">
+                  <h3 className="font-bold text-white mb-2 line-clamp-2 group-hover:text-primary-400 transition-colors">
                     {article.title}
                   </h3>
-                  <p className="text-sm text-dark-600 mb-2 line-clamp-2">
+                  <p className="text-sm text-gray-300 mb-2 line-clamp-2">
                     {article.description}
                   </p>
-                  <div className="flex items-center justify-between text-xs text-dark-500">
-                    <span className="flex items-center gap-1">
+                  <div className="flex items-center justify-between text-xs text-gray-400">
+                    <span className="flex items-center gap-1 font-medium">
                       <Newspaper className="w-3 h-3" />
                       {article.source.name}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1 font-medium">
                       <Calendar className="w-3 h-3" />
                       {formatDate(article.publishedAt)}
                     </span>
                   </div>
                 </div>
                 
-                <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-primary-600 transition-colors flex-shrink-0 mt-1" />
+                <ExternalLink className="w-5 h-5 text-gray-500 group-hover:text-primary-400 transition-colors flex-shrink-0 mt-1" />
               </div>
             </div>
           </motion.a>

@@ -17,8 +17,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen relative px-4 sm:px-6 lg:px-8 py-6 sm:py-8" style={{ background: 'transparent' }}>
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -53,38 +53,38 @@ const Dashboard = () => {
           transition={{ delay: 0.1 }}
           className="grid md:grid-cols-3 gap-4 mb-8"
         >
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+          <div className="glassmorphism rounded-xl p-6 shadow-lg border-2 border-primary-500/30 hover:border-primary-500/50 transition-all">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center">
-                <User className="w-6 h-6 text-white" />
+              <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-lg glow-cyan">
+                <User className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h3 className="text-sm font-medium text-dark-600">Full Name</h3>
-                <p className="text-lg font-semibold text-dark-900">{user?.name}</p>
+                <h3 className="text-sm font-medium text-gray-400 mb-1">Full Name</h3>
+                <p className="text-lg font-bold text-white">{user?.name}</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+          <div className="glassmorphism rounded-xl p-6 shadow-lg border-2 border-green-500/30 hover:border-green-500/50 transition-all">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center">
-                <Mail className="w-6 h-6 text-white" />
+              <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center shadow-lg" style={{boxShadow: '0 0 20px rgba(34, 197, 94, 0.5)'}}>
+                <Mail className="w-7 h-7 text-white" />
               </div>
-              <div>
-                <h3 className="text-sm font-medium text-dark-600">Email</h3>
-                <p className="text-lg font-semibold text-dark-900 truncate">{user?.email}</p>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-medium text-gray-400 mb-1">Email</h3>
+                <p className="text-lg font-bold text-white truncate">{user?.email}</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+          <div className="glassmorphism-purple rounded-xl p-6 shadow-lg border-2 border-accent-500/30 hover:border-accent-500/50 transition-all">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center">
-                <Calendar className="w-6 h-6 text-white" />
+              <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center shadow-lg glow-purple">
+                <Calendar className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h3 className="text-sm font-medium text-dark-600">User ID</h3>
-                <p className="text-lg font-semibold text-dark-900">{user?.id}</p>
+                <h3 className="text-sm font-medium text-gray-400 mb-1">User ID</h3>
+                <p className="text-lg font-bold text-white">{user?.id}</p>
               </div>
             </div>
           </div>

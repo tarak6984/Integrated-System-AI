@@ -33,3 +33,5 @@ tmp_rovodev_*
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
+.vercel
+.env*.local

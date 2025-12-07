@@ -38,24 +38,33 @@ const Services = () => {
   const colorClasses = {
     primary: {
       gradient: 'from-primary-500 to-primary-700',
-      text: 'text-primary-600',
-      bg: 'bg-primary-50'
+      text: 'text-primary-400',
+      bg: 'bg-primary-500/20',
+      glow: 'glow-cyan'
     },
     accent: {
       gradient: 'from-accent-500 to-accent-700',
-      text: 'text-accent-600',
-      bg: 'bg-accent-50'
+      text: 'text-accent-400',
+      bg: 'bg-accent-500/20',
+      glow: 'glow-purple'
     },
     dark: {
-      gradient: 'from-dark-600 to-dark-800',
-      text: 'text-dark-600',
-      bg: 'bg-dark-50'
+      gradient: 'from-gray-600 to-gray-800',
+      text: 'text-gray-400',
+      bg: 'bg-gray-500/20',
+      glow: 'shadow-lg shadow-gray-500/30'
     }
   }
 
   return (
-    <section id="services" className="section-padding bg-gradient-to-b from-dark-50 to-white">
-      <div className="container-custom">
+    <section id="services" className="section-padding bg-gradient-space relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+      </div>
+
+      <div className="container-custom relative z-10">
         <SectionTitle
           subtitle="What We Offer"
           title="Our Services & Strategic Focus"
@@ -76,9 +85,9 @@ const Services = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="h-full p-6 sm:p-8 hover:shadow-2xl transition-shadow duration-300">
+                <Card className={`h-full p-6 sm:p-8 hover:${colors.glow} transition-all duration-300`}>
                   <motion.div 
-                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${colors.gradient} mb-6 shadow-lg`}
+                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${colors.gradient} mb-6 ${colors.glow} animate-glow-pulse`}
                     initial={{ scale: 0, rotate: -180 }}
                     whileInView={{ scale: 1, rotate: 0 }}
                     viewport={{ once: true }}
@@ -88,7 +97,7 @@ const Services = () => {
                   </motion.div>
                   
                   <motion.h3 
-                    className="text-xl sm:text-2xl font-bold font-display text-dark-900 mb-4"
+                    className="text-xl sm:text-2xl font-bold font-display text-white mb-4"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -97,7 +106,7 @@ const Services = () => {
                     {service.title}
                   </motion.h3>
                   
-                  <p className="text-dark-600 text-base leading-relaxed mb-6">
+                  <p className="text-gray-300 text-base leading-relaxed mb-6">
                     {service.description}
                   </p>
 
@@ -105,7 +114,7 @@ const Services = () => {
                     {service.features.map((feature, idx) => (
                       <span
                         key={idx}
-                        className={`${colors.bg} ${colors.text} px-3 py-1 rounded-full text-sm font-medium`}
+                        className={`${colors.bg} ${colors.text} px-3 py-1 rounded-full text-sm font-medium border border-current/30`}
                       >
                         {feature}
                       </span>

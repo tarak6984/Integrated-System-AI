@@ -37,8 +37,11 @@ const WhyChooseUs = () => {
   ]
 
   return (
-    <section id="why-us" className="section-padding bg-white">
-      <div className="container-custom">
+    <section id="why-us" className="section-padding relative overflow-hidden" style={{ background: 'transparent' }}>
+      {/* Animated background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-950/10 to-transparent"></div>
+      
+      <div className="container-custom relative z-10">
         <SectionTitle
           subtitle="Our Differentiators"
           title="Why Choose Integrated Systems AI?"
@@ -60,11 +63,11 @@ const WhyChooseUs = () => {
                 className="group relative"
               >
                 {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${reason.color} rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-br ${reason.color} rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl`}></div>
                 
-                <div className="relative p-8 rounded-2xl border-2 border-dark-100 group-hover:border-primary-300 transition-all duration-300 bg-white h-full hover:shadow-xl">
+                <div className="relative glassmorphism p-8 rounded-2xl border-2 border-primary-500/20 group-hover:border-primary-400/50 transition-all duration-300 h-full hover:glow-cyan">
                   <motion.div 
-                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${reason.color} mb-6 shadow-lg`}
+                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${reason.color} mb-6 glow-cyan`}
                     whileHover={{ scale: 1.15, rotate: 5 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -72,7 +75,7 @@ const WhyChooseUs = () => {
                   </motion.div>
                   
                   <motion.h3 
-                    className="text-xl font-bold font-display text-dark-900 mb-4"
+                    className="text-xl font-bold font-display text-white mb-4"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -81,7 +84,7 @@ const WhyChooseUs = () => {
                     {reason.title}
                   </motion.h3>
                   
-                  <p className="text-dark-600 leading-relaxed">
+                  <p className="text-gray-300 leading-relaxed">
                     {reason.description}
                   </p>
                 </div>
@@ -96,14 +99,14 @@ const WhyChooseUs = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 text-center bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl p-12 shadow-2xl"
+          className="mt-16 text-center bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-12 shadow-2xl glow-cyan hover:glow-purple transition-all duration-500"
         >
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 text-shadow-lg">
             Ready to Transform Your Operations?
           </h3>
-          <p className="text-base sm:text-lg md:text-xl text-primary-50 max-w-3xl mx-auto">
-            Whether you're looking to modernize your operations, automate key processes, 
-            or explore the transformative power of AI in your sector — we're here to build with you.
+          <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
+            Whether you&apos;re looking to modernize your operations, automate key processes, 
+            or explore the transformative power of AI in your sector — we&apos;re here to build with you.
           </p>
         </motion.div>
       </div>

@@ -35,8 +35,14 @@ const GlobalVision = () => {
   ]
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white to-dark-50">
-      <div className="container-custom">
+    <section className="section-padding bg-gradient-space relative overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      <div className="container-custom relative z-10">
         <SectionTitle
           subtitle="Global Expansion"
           title="A Global Vision with Local Execution"
@@ -49,9 +55,9 @@ const GlobalVision = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center text-base sm:text-lg md:text-xl text-dark-600 max-w-4xl mx-auto mb-12 sm:mb-16"
+          className="text-center text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-12 sm:mb-16"
         >
-          With Bangladesh as our core engineering and support hub, we combine technical expertise 
+          With <span className="text-primary-400 font-semibold">Bangladesh</span> as our core engineering and support hub, we combine technical expertise 
           with cost-effective scalability. Our operational model allows us to rapidly develop, test, 
           and deploy AI solutions across diverse markets.
         </motion.p>
@@ -78,7 +84,7 @@ const GlobalVision = () => {
                   {region.icon}
                 </motion.div>
                 <motion.h3 
-                  className="text-lg sm:text-xl font-bold text-dark-900 mb-2"
+                  className="text-lg sm:text-xl font-bold text-white mb-2"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -87,7 +93,7 @@ const GlobalVision = () => {
                   {region.name}
                 </motion.h3>
                 <motion.p 
-                  className="text-primary-600 text-sm sm:text-base font-semibold"
+                  className="text-primary-400 text-sm sm:text-base font-semibold"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
@@ -107,7 +113,7 @@ const GlobalVision = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold font-display text-center text-dark-900 mb-8 sm:mb-12"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold font-display text-center text-white mb-8 sm:mb-12"
           >
             Our Long-Term Vision
           </motion.h3>
@@ -122,14 +128,14 @@ const GlobalVision = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex items-start space-x-4"
+                  className="flex items-start space-x-4 glassmorphism p-4 rounded-xl hover:glow-cyan transition-all duration-300"
                 >
-                  <div className="flex-shrink-0 p-3 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl shadow-lg">
+                  <div className="flex-shrink-0 p-3 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl glow-cyan">
                     <Icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-lg sm:text-xl font-bold text-dark-900 mb-2">{objective.title}</h4>
-                    <p className="text-dark-600 text-sm sm:text-base leading-relaxed">{objective.description}</p>
+                    <h4 className="text-lg sm:text-xl font-bold text-white mb-2">{objective.title}</h4>
+                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">{objective.description}</p>
                   </div>
                 </motion.div>
               )
@@ -145,10 +151,10 @@ const GlobalVision = () => {
           transition={{ duration: 0.6 }}
           className="mt-16 text-center"
         >
-          <Card className="p-6 sm:p-8 md:p-12 bg-gradient-to-br from-primary-50 to-accent-50 border-2 border-primary-200" hover={false}>
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-dark-900 leading-relaxed">
+          <Card className="p-6 sm:p-8 md:p-12 bg-gradient-to-br from-primary-500/10 to-accent-500/10 border-2 border-primary-500/30 hover:glow-purple transition-all duration-300" hover={false}>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-relaxed">
               Integrated Systems AI aims to be more than a product company. 
-              We are building a <span className="text-gradient">platform for sustainable AI innovation</span>.
+              We are building a <span className="text-gradient-cyber">platform for sustainable AI innovation</span>.
             </p>
           </Card>
         </motion.div>

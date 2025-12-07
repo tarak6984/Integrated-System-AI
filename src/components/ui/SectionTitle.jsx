@@ -22,7 +22,7 @@ const SectionTitle = ({
     >
       {subtitle && (
         <motion.p 
-          className="text-primary-600 font-semibold text-sm md:text-base uppercase tracking-wider mb-3"
+          className="text-primary-400 font-semibold text-sm md:text-base uppercase tracking-wider mb-3"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -32,7 +32,7 @@ const SectionTitle = ({
         </motion.p>
       )}
       <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-display ${
-          gradient ? 'text-gradient' : 'text-dark-900'
+          gradient ? 'text-gradient-cyber' : 'text-white'
         }`}
       >
         {words.map((word, index) => (
