@@ -36,5 +36,5 @@ tmp_rovodev_*
 .vercel
 .env*.local
 
-# Large video files
-public/neural-starlink-vision.mp4
+# Large video files - Now tracked with Git LFS
+# public/neural-starlink-vision.mp4
