@@ -67,8 +67,13 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(distPath));
   
   // Handle React routing - serve index.html for all non-API routes
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(distPath, 'index.html'));
+  app.use((req, res, next) => {
+    // If request is not for API and file doesn't exist, serve index.html
+    if (!req.path.startsWith('/api')) {
+      res.sendFile(path.join(distPath, 'index.html'));
+    } else {
+      next();
+    }
   });
 }
 
