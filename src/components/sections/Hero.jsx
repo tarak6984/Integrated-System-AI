@@ -51,8 +51,8 @@ const Hero = () => {
           disableRemotePlayback
           webkit-playsinline="true"
         >
-          <source src="/neural-starlink-vision.mp4" type="video/mp4; codecs=avc1.4D401E,mp4a.40.2" />
-          <source src="/neural-starlink-vision.webm" type="video/webm; codecs=vp9,opus" />
+          {/* Cloudinary CDN - Optimized delivery with auto quality and format */}
+          <source src="https://res.cloudinary.com/di5dut3x2/video/upload/q_auto,f_auto/neural-starlink-vision_ifjl2k.mp4" type="video/mp4" />
         </video>
         
         {/* Lighter Gradient Overlays - More Video Visible */}
