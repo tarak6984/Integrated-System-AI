@@ -27,7 +27,7 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
       {/* Space background is now global - no local canvas needed */}
 
-      {/* Neural-Starlink Vision Video - HIGHEST QUALITY */}
+      {/* Neural-Starlink Vision Video - OPTIMIZED FOR FAST LOADING */}
       <div className="absolute inset-0 z-10">
         <video
           autoPlay
@@ -36,7 +36,7 @@ const Hero = () => {
           playsInline
           preload="auto"
           onLoadedData={() => setVideoLoaded(true)}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
             videoLoaded ? 'opacity-50' : 'opacity-0'
           }`}
           style={{ 
@@ -46,13 +46,12 @@ const Hero = () => {
             transform: 'translateZ(0)',
             willChange: 'auto'
           }}
-          poster="/video-poster.jpg"
           disablePictureInPicture
           disableRemotePlayback
           webkit-playsinline="true"
         >
-          {/* Cloudinary CDN - Optimized delivery with auto quality and format */}
-          <source src="https://res.cloudinary.com/di5dut3x2/video/upload/q_auto,f_auto/neural-starlink-vision_ifjl2k.mp4" type="video/mp4" />
+          {/* Cloudinary CDN - Optimized with reduced bitrate for faster initial load */}
+          <source src="https://res.cloudinary.com/di5dut3x2/video/upload/q_auto:low,f_auto,w_1920,br_1000k,vc_h264/neural-starlink-vision_ifjl2k.mp4" type="video/mp4" />
         </video>
         
         {/* Lighter Gradient Overlays - More Video Visible */}
