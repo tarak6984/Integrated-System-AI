@@ -35,3 +35,6 @@ tmp_rovodev_*
 *.sqlite-wal
 .vercel
 .env*.local
+
+# Large video files
+public/neural-starlink-vision.mp4
