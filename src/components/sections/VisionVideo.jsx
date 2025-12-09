@@ -1,33 +1,6 @@
 import { motion } from 'framer-motion'
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react'
-import { useState, useRef } from 'react'
 
 const VisionVideo = () => {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(true)
-  const videoRef = useRef(null)
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause()
-      } else {
-        videoRef.current.play()
-      }
-      setIsPlaying(!isPlaying)
-    }
-  }
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted
-      setIsMuted(!isMuted)
-    }
-  }
-
-  const handleVideoClick = () => {
-    togglePlay()
-  }
 
   return (
     <section className="relative py-20 overflow-hidden">
@@ -77,55 +50,16 @@ const VisionVideo = () => {
             
             {/* Video Wrapper */}
             <div className="relative glassmorphism rounded-2xl overflow-hidden shadow-2xl">
-              {/* Video Element */}
-              <div className="relative aspect-video bg-dark-900 cursor-pointer" onClick={handleVideoClick}>
-                <video
-                  ref={videoRef}
-                  className="w-full h-full object-cover"
-                  loop
-                  muted={isMuted}
-                  playsInline
-                  onEnded={() => setIsPlaying(false)}
-                >
-                  <source src="/neural-starlink-vision.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-
-                {/* Play/Pause Overlay - Only shows when paused */}
-                {!isPlaying && (
-                  <motion.div
-                    className="absolute inset-0 flex items-center justify-center bg-dark-900/60 transition-opacity duration-300"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <motion.button
-                      onClick={togglePlay}
-                      className="p-4 rounded-full bg-primary-500/30 border-2 border-primary-400 hover:bg-primary-500/50 transition-all duration-300 glow-cyan"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Play size={36} className="text-primary-300 ml-1" />
-                    </motion.button>
-                  </motion.div>
-                )}
-
-                {/* Volume Control */}
-                <motion.button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    toggleMute()
-                  }}
-                  className="absolute bottom-4 right-4 p-3 rounded-full bg-dark-900/90 border border-primary-400/30 hover:bg-primary-500/20 transition-all duration-300 opacity-0 group-hover:opacity-100"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {isMuted ? (
-                    <VolumeX size={20} className="text-gray-400" />
-                  ) : (
-                    <Volume2 size={20} className="text-primary-400" />
-                  )}
-                </motion.button>
+              {/* Vimeo Video Embed */}
+              <div className="relative aspect-video bg-dark-900">
+                <iframe
+                  src="https://player.vimeo.com/video/1144819961?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0"
+                  className="absolute top-0 left-0 w-full h-full"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="neural-starlink-vision"
+                />
               </div>
 
               {/* Video Caption/Description */}
