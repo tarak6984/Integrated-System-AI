@@ -59,22 +59,22 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block mb-4 group">
               <img 
-                src="/logo-white.svg" 
+                src="/logo-new.png" 
                 alt="Integrated Systems AI" 
                 className="h-12 w-auto hover:drop-shadow-[0_0_15px_rgba(0,191,255,0.6)] transition-all duration-300 group-hover:scale-105"
               />
             </Link>
-            <p className="text-gray-400 mb-6 max-w-sm leading-relaxed">
+            <p className="text-white mb-6 max-w-sm leading-relaxed">
               Harnessing <span className="text-primary-400">Artificial Intelligence</span> to Drive Efficiency, Empower Workforces, and Accelerate Innovation.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-500 hover:text-primary-400 transition-all hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(0,191,255,0.5)]">
+              <a href="#" className="text-white hover:text-primary-400 transition-all hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(0,191,255,0.5)]">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary-400 transition-all hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(0,191,255,0.5)]">
+              <a href="#" className="text-white hover:text-primary-400 transition-all hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(0,191,255,0.5)]">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary-400 transition-all hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(0,191,255,0.5)]">
+              <a href="#" className="text-white hover:text-primary-400 transition-all hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(0,191,255,0.5)]">
                 <Github size={20} />
               </a>
             </div>
@@ -86,7 +86,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="text-gray-400 hover:text-primary-400 transition-colors hover:translate-x-1 inline-block">
+                  <a href={link.href} className="text-white hover:text-primary-400 transition-colors hover:translate-x-1 inline-block">
                     {link.name}
                   </a>
                 </li>
@@ -99,7 +99,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.solutions.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="text-gray-400 hover:text-primary-400 transition-colors hover:translate-x-1 inline-block">
+                  <a href={link.href} className="text-white hover:text-primary-400 transition-colors hover:translate-x-1 inline-block">
                     {link.name}
                   </a>
                 </li>
@@ -112,7 +112,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="text-gray-400 hover:text-primary-400 transition-colors hover:translate-x-1 inline-block">
+                  <a href={link.href} className="text-white hover:text-primary-400 transition-colors hover:translate-x-1 inline-block">
                     {link.name}
                   </a>
                 </li>
@@ -128,8 +128,8 @@ const Footer = () => {
               <Mail className="w-5 h-5 text-primary-400 mt-1 group-hover:animate-pulse" />
               <div>
                 <p className="text-white font-medium mb-1">Email Us</p>
-                <a href="mailto:buildwith@integratedsystems.ai" className="text-gray-400 hover:text-primary-400 transition-colors">
-                  buildwith@integratedsystems.ai
+                <a href="mailto:buildwith@integrated-systems.ai" className="text-white hover:text-primary-400 transition-colors">
+                  buildwith@integrated-systems.ai
                 </a>
               </div>
             </div>
@@ -137,7 +137,7 @@ const Footer = () => {
               <MapPin className="w-5 h-5 text-accent-400 mt-1 group-hover:animate-pulse" />
               <div>
                 <p className="text-white font-medium mb-1">Headquarters</p>
-                <p className="text-gray-400">
+                <p className="text-white">
                   <span className="text-primary-400">United Kingdom</span> | Operations Hub: <span className="text-accent-400">Bangladesh</span>
                 </p>
               </div>
@@ -147,23 +147,23 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-primary-500/20 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-gray-500 text-sm">
+          <p className="text-white text-sm">
             © {currentYear} <span className="text-gradient-cyber font-semibold">Integrated Systems AI Ltd</span>. All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm items-center">
-            <a href="#" className="text-gray-500 hover:text-primary-400 transition-colors">
+            <a href="#" className="text-white hover:text-primary-400 transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-gray-500 hover:text-primary-400 transition-colors">
+            <a href="#" className="text-white hover:text-primary-400 transition-colors">
               Terms of Service
             </a>
-            <a href="#" className="text-gray-500 hover:text-primary-400 transition-colors">
+            <a href="#" className="text-white hover:text-primary-400 transition-colors">
               Cookie Policy
             </a>
             {/* Admin Lock Icon */}
             <button
               onClick={() => setShowPasscodeModal(true)}
-              className="text-gray-500 hover:text-primary-400 transition-all hover:scale-110"
+              className="text-white hover:text-primary-400 transition-all hover:scale-110"
               title="Admin Access"
             >
               <Lock size={16} />
@@ -181,7 +181,7 @@ const Footer = () => {
                 <Lock className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">Admin Access</h3>
-              <p className="text-gray-300 text-sm">Enter passcode to continue</p>
+              <p className="text-white text-sm">Enter passcode to continue</p>
             </div>
 
             {error && (

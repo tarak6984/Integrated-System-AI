@@ -44,7 +44,7 @@ const CoreValues = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-12 sm:mb-16"
+          className="text-center text-base sm:text-lg md:text-xl text-white max-w-4xl mx-auto mb-12 sm:mb-16"
         >
           Our AI systems are built to work alongside your teams — automating repetitive tasks, 
           uncovering data-driven insights, and improving the speed and quality of decision-making.
@@ -83,7 +83,7 @@ const CoreValues = () => {
                     {value.title}
                   </motion.h3>
                   
-                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                  <p className="text-white text-sm sm:text-base leading-relaxed">
                     {value.description}
                   </p>
                 </div>

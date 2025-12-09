@@ -49,9 +49,12 @@ const WhyChooseUs = () => {
           centered={true}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Bento Grid Layout - Top 3 equal, Bottom 2 wider */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           {reasons.map((reason, index) => {
             const Icon = reason.icon
+            const isBottomRow = index >= 3 // Items 4 & 5 (Hybrid Model & Ethical AI)
+            
             return (
               <motion.div
                 key={index}
@@ -60,15 +63,15 @@ const WhyChooseUs = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                className="group relative"
+                className={`group relative ${isBottomRow ? 'lg:col-span-3' : 'lg:col-span-2'}`}
               >
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${reason.color} rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl`}></div>
                 
-                <div className="relative glassmorphism p-8 rounded-2xl border-2 border-primary-500/20 group-hover:border-primary-400/50 transition-all duration-300 h-full hover:glow-cyan">
+                <div className="relative glassmorphism p-8 rounded-2xl border-2 border-primary-500/20 group-hover:border-primary-400/50 transition-all duration-300 h-full min-h-[280px] flex flex-col">
                   <motion.div 
-                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${reason.color} mb-6 glow-cyan`}
-                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${reason.color} mb-6 w-fit`}
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   >
                     <Icon className="w-7 h-7 text-white" />
@@ -84,7 +87,7 @@ const WhyChooseUs = () => {
                     {reason.title}
                   </motion.h3>
                   
-                  <p className="text-gray-300 leading-relaxed">
+                  <p className="text-white leading-relaxed flex-grow">
                     {reason.description}
                   </p>
                 </div>
@@ -99,9 +102,9 @@ const WhyChooseUs = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 text-center bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl p-12 shadow-2xl glow-cyan hover:glow-purple transition-all duration-500"
+          className="mt-16 text-center bg-gradient-to-r from-primary-500/80 to-accent-500/80 rounded-2xl p-12 shadow-lg transition-all duration-500"
         >
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 text-shadow-lg">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Transform Your Operations?
           </h3>
           <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto">

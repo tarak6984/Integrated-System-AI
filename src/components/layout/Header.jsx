@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, LogOut, LayoutDashboard, Shield } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import Button from '../ui/Button'
-import { useAuth } from '../../context/AuthContext'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { logout, isAuthenticated } = useAuth()
-  const navigate = useNavigate()
   const location = useLocation()
 
   useEffect(() => {
@@ -23,9 +20,9 @@ const Header = () => {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'Services', href: '#services' },
-    { name: 'Vision', href: '#vision' },
+    { name: 'AI Agents', href: '#ai-agents' },
+    { name: 'Industries', href: '#industries' },
     { name: 'Why Us', href: '#why-us' },
-    { name: 'Contact', href: '#contact' },
   ]
 
   const scrollToSection = (e, href) => {
@@ -60,7 +57,7 @@ const Header = () => {
             className="flex items-center group"
           >
             <img 
-              src="/logo-white.svg"
+              src="/logo-new.png"
               alt="Integrated Systems AI" 
               className="h-12 w-auto transition-all duration-300 group-hover:scale-105 drop-shadow-[0_0_10px_rgba(0,191,255,0.5)]"
             />
@@ -80,63 +77,16 @@ const Header = () => {
               </a>
             ))}
             
-            {!isAuthenticated ? (
-              <>
-                <Link to="/login">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="border-primary-500/50 text-white hover:bg-primary-500/20 hover:border-primary-400"
-                  >
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/signup">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="border-primary-500/50 text-white hover:bg-primary-500/20 hover:border-primary-400"
-                  >
-                    Sign Up
-                  </Button>
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link to="/dashboard">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="flex items-center gap-2 border-accent-500/50 text-white hover:bg-accent-500/20"
-                  >
-                    <LayoutDashboard size={16} />
-                    Dashboard
-                  </Button>
-                </Link>
-                <Link to="/admin">
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="flex items-center gap-2 border-purple-500/50 text-white hover:bg-purple-500/20"
-                  >
-                    <Shield size={16} />
-                    Admin
-                  </Button>
-                </Link>
-                <Button 
-                  variant="primary" 
-                  size="sm"
-                  onClick={async () => {
-                    await logout()
-                    navigate('/')
-                  }}
-                  className="flex items-center gap-2 glow-purple"
-                >
-                  <LogOut size={16} />
-                  Logout
-                </Button>
-              </>
-            )}
+            {/* CTA Button */}
+            <a href="#contact">
+              <Button 
+                variant="primary" 
+                size="sm"
+                className="glow-cyan"
+              >
+                Get In Touch
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -171,64 +121,16 @@ const Header = () => {
                 </a>
               ))}
               
-              {!isAuthenticated ? (
-                <>
-                  <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="w-full border-primary-500/50 text-white hover:bg-primary-500/20"
-                    >
-                      Login
-                    </Button>
-                  </Link>
-                  <Link to="/signup" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="w-full border-primary-500/50 text-white hover:bg-primary-500/20"
-                    >
-                      Sign Up
-                    </Button>
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="w-full flex items-center justify-center gap-2 border-accent-500/50 text-white hover:bg-accent-500/20"
-                    >
-                      <LayoutDashboard size={16} />
-                      Dashboard
-                    </Button>
-                  </Link>
-                  <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="w-full flex items-center justify-center gap-2 border-purple-500/50 text-white hover:bg-purple-500/20"
-                    >
-                      <Shield size={16} />
-                      Admin
-                    </Button>
-                  </Link>
-                  <Button 
-                    variant="primary" 
-                    size="sm"
-                    className="w-full flex items-center justify-center gap-2 glow-purple"
-                    onClick={async () => {
-                      await logout()
-                      navigate('/')
-                      setIsMobileMenuOpen(false)
-                    }}
-                  >
-                    <LogOut size={16} />
-                    Logout
-                  </Button>
-                </>
-              )}
+              {/* Mobile CTA Button */}
+              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button 
+                  variant="primary" 
+                  size="sm" 
+                  className="w-full glow-cyan"
+                >
+                  Get In Touch
+                </Button>
+              </a>
             </div>
           </motion.div>
         )}

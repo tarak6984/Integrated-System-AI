@@ -93,7 +93,7 @@ const AIChatbot = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-full shadow-2xl flex items-center justify-center text-white z-50 hover:shadow-primary-500/50 transition-all"
+            className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-primary-600 to-accent-600 rounded-full shadow-2xl flex items-center justify-center text-white z-50 hover:shadow-primary-500/50 transition-all"
           >
             <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7" />
             <motion.div
@@ -118,7 +118,7 @@ const AIChatbot = () => {
             }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
             transition={{ type: 'spring', damping: 25 }}
-            className="fixed bottom-4 right-4 left-4 sm:left-auto sm:bottom-6 sm:right-6 w-auto sm:w-96 max-w-full sm:max-w-md bg-white rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden border border-gray-200"
+            className="fixed bottom-4 left-4 right-4 sm:right-auto sm:bottom-6 sm:left-6 w-auto sm:w-96 max-w-full sm:max-w-md bg-white rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden border border-gray-200"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-primary-600 to-accent-600 p-4 flex items-center justify-between">

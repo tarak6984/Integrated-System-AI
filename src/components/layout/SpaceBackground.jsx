@@ -56,8 +56,8 @@ const SpaceBackground = () => {
           if (distance < 300) {
             const opacity = (1 - distance / 300) * 0.3
             ctx.strokeStyle = nodeStars[i].color === 'cyan' 
-              ? `rgba(0, 191, 255, ${opacity})` 
-              : `rgba(168, 102, 255, ${opacity})`
+              ? `rgba(8, 145, 178, ${opacity})` 
+              : `rgba(139, 92, 246, ${opacity})`
             ctx.lineWidth = 0.5
             ctx.beginPath()
             ctx.moveTo(nodeStars[i].x, nodeStars[i].y)
@@ -92,13 +92,13 @@ const SpaceBackground = () => {
         // Outer glow
         const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowSize)
         if (node.color === 'cyan') {
-          gradient.addColorStop(0, `rgba(0, 191, 255, ${0.8 * pulse})`)
-          gradient.addColorStop(0.5, `rgba(0, 191, 255, ${0.3 * pulse})`)
-          gradient.addColorStop(1, 'rgba(0, 191, 255, 0)')
+          gradient.addColorStop(0, `rgba(8, 145, 178, ${0.8 * pulse})`)
+          gradient.addColorStop(0.5, `rgba(8, 145, 178, ${0.3 * pulse})`)
+          gradient.addColorStop(1, 'rgba(8, 145, 178, 0)')
         } else {
-          gradient.addColorStop(0, `rgba(168, 102, 255, ${0.8 * pulse})`)
-          gradient.addColorStop(0.5, `rgba(168, 102, 255, ${0.3 * pulse})`)
-          gradient.addColorStop(1, 'rgba(168, 102, 255, 0)')
+          gradient.addColorStop(0, `rgba(139, 92, 246, ${0.8 * pulse})`)
+          gradient.addColorStop(0.5, `rgba(139, 92, 246, ${0.3 * pulse})`)
+          gradient.addColorStop(1, 'rgba(139, 92, 246, 0)')
         }
         
         ctx.fillStyle = gradient
@@ -107,7 +107,7 @@ const SpaceBackground = () => {
         ctx.fill()
 
         // Core star
-        ctx.fillStyle = node.color === 'cyan' ? '#00bfff' : '#a866ff'
+        ctx.fillStyle = node.color === 'cyan' ? '#0891b2' : '#8b5cf6'
         ctx.beginPath()
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2)
         ctx.fill()

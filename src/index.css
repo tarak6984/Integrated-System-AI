@@ -28,11 +28,11 @@
   }
 
   .text-gradient-cyber {
-    background: linear-gradient(135deg, #1acaff 0%, #4dd5ff 25%, #b780ff 75%, #d6b3ff 100%);
+    background: linear-gradient(135deg, #22d3ee 0%, #67e8f9 25%, #a78bfa 75%, #c4b5fd 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: brightness(1.3) saturate(1.2);
+    filter: brightness(1.2) saturate(1.1);
   }
 
   .bg-gradient-primary {
@@ -69,29 +69,29 @@
   }
 
   .glow-cyan {
-    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5), 
-                0 0 40px rgba(0, 191, 255, 0.3),
-                0 0 60px rgba(0, 191, 255, 0.1);
+    box-shadow: 0 0 10px rgba(8, 145, 178, 0.2), 
+                0 0 20px rgba(8, 145, 178, 0.1),
+                0 0 30px rgba(8, 145, 178, 0.05);
   }
 
   .glow-purple {
-    box-shadow: 0 0 20px rgba(168, 102, 255, 0.5), 
-                0 0 40px rgba(168, 102, 255, 0.3),
-                0 0 60px rgba(168, 102, 255, 0.1);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2), 
+                0 0 20px rgba(139, 92, 246, 0.1),
+                0 0 30px rgba(139, 92, 246, 0.05);
   }
 
   .glassmorphism {
     background: rgba(10, 10, 10, 0.4);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 191, 255, 0.2);
-    box-shadow: 0 0 20px rgba(0, 191, 255, 0.1);
+    border: 1px solid rgba(8, 145, 178, 0.2);
+    box-shadow: 0 0 20px rgba(8, 145, 178, 0.1);
   }
 
   .glassmorphism-purple {
     background: rgba(10, 10, 10, 0.4);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(168, 102, 255, 0.2);
-    box-shadow: 0 0 20px rgba(168, 102, 255, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
   }
 
   .cyber-grid {
@@ -157,14 +157,14 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00bfff 0%, #a866ff 100%);
+  background: linear-gradient(180deg, #0891b2 0%, #8b5cf6 100%);
   border-radius: 10px;
   border: 2px solid #000000;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #1acaff 0%, #b780ff 100%);
-  box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+  background: linear-gradient(180deg, #22d3ee 0%, #a78bfa 100%);
+  box-shadow: 0 0 10px rgba(8, 145, 178, 0.5);
 }
 
 /* Space particles animation */
@@ -186,7 +186,7 @@
 /* Neural network connection lines */
 .neural-line {
   position: absolute;
-  background: linear-gradient(90deg, transparent, rgba(0, 191, 255, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(8, 145, 178, 0.5), transparent);
   height: 1px;
   animation: dataFlow 3s linear infinite;
 }

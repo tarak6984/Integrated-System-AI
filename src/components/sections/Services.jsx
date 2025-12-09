@@ -8,9 +8,9 @@ const Services = () => {
     {
       icon: Microscope,
       title: 'AI Research & Development Lab',
-      description: 'Headquartered in the United Kingdom with a dedicated operations and engineering hub in Bangladesh, we focus on the development of intelligent, scalable AI technologies that solve real-world business challenges.',
+      description: 'Headquartered in the United Kingdom with engineering hubs in Bangladesh and Japan, we focus on the development of intelligent, scalable AI technologies that solve real-world business challenges.',
       color: 'primary',
-      features: ['Advanced R&D', 'UK Headquarters', 'Bangladesh Hub', 'Scalable Technology']
+      features: ['Advanced R&D', 'UK Headquarters', 'Bangladesh Hub', 'Japan Hub']
     },
     {
       icon: Blocks,
@@ -85,9 +85,9 @@ const Services = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className={`h-full p-6 sm:p-8 hover:${colors.glow} transition-all duration-300`}>
+                <Card className={`h-full p-6 sm:p-8 transition-all duration-300`}>
                   <motion.div 
-                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${colors.gradient} mb-6 ${colors.glow} animate-glow-pulse`}
+                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${colors.gradient} mb-6`}
                     initial={{ scale: 0, rotate: -180 }}
                     whileInView={{ scale: 1, rotate: 0 }}
                     viewport={{ once: true }}
@@ -106,7 +106,7 @@ const Services = () => {
                     {service.title}
                   </motion.h3>
                   
-                  <p className="text-gray-300 text-base leading-relaxed mb-6">
+                  <p className="text-white text-base leading-relaxed mb-6">
                     {service.description}
                   </p>
 
@@ -114,7 +114,7 @@ const Services = () => {
                     {service.features.map((feature, idx) => (
                       <span
                         key={idx}
-                        className={`${colors.bg} ${colors.text} px-3 py-1 rounded-full text-sm font-medium border border-current/30`}
+                        className={`${colors.bg} ${colors.text} px-3 py-1 rounded-full text-sm font-medium`}
                       >
                         {feature}
                       </span>

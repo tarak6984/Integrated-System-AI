@@ -14,11 +14,19 @@ const GlobalMap = () => {
     },
     {
       name: 'Bangladesh Hub',
-      type: 'Operations Center',
+      type: 'Engineering Center',
       icon: Users,
       color: 'from-green-500 to-green-700',
       stats: { label: 'Engineering Team', value: '50+' },
       description: 'R&D, Development & Operations'
+    },
+    {
+      name: 'Japan Hub',
+      type: 'Engineering Center',
+      icon: Users,
+      color: 'from-purple-500 to-purple-700',
+      stats: { label: 'Innovation Focus', value: 'AI/ML' },
+      description: 'Advanced AI Research & Development'
     }
   ];
 

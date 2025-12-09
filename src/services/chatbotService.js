@@ -6,17 +6,17 @@ export const chatbotService = {
   knowledgeBase: {
     company: {
       name: "Integrated Systems AI",
-      tagline: "Pioneering intelligent automation and AI solutions",
+      tagline: "Integrating industries with the power of AI",
       headquarters: "United Kingdom",
-      operations: "Bangladesh",
-      email: "buildwith@integratedsystems.ai",
+      engineeringHubs: "Bangladesh and Japan",
+      email: "buildwith@integrated-systems.ai",
       responseTime: "24 hours"
     },
     services: [
       {
         id: "ai-rd",
         name: "AI Research & Development Lab",
-        description: "Advanced R&D with UK headquarters and Bangladesh engineering hub developing intelligent, scalable AI technologies",
+        description: "Advanced R&D with UK headquarters and engineering hubs in Bangladesh and Japan, developing intelligent, scalable AI technologies",
         features: ["Advanced R&D", "UK Headquarters", "Bangladesh Hub", "Scalable Technology"]
       },
       {
@@ -46,7 +46,7 @@ export const chatbotService = {
       agriculture: "Crop monitoring, yield prediction, resource optimization, and precision farming"
     },
     benefits: [
-      "Dual UK-Bangladesh setup combines strategic vision with cost-effective execution",
+      "Global presence with UK HQ and engineering hubs in Bangladesh and Japan combines strategic vision with innovation",
       "Seamless integration with existing systems",
       "Scalable solutions that grow with your business",
       "Industry-specific expertise across 5 major sectors",
@@ -162,7 +162,7 @@ export const chatbotService = {
       }
 
       case 'location':
-        return `**Our Global Presence**\n\n🇬🇧 **UK Headquarters** - Strategic vision and client relations\n🇧🇩 **Bangladesh Operations Hub** - R&D, development, and engineering\n\nThis dual presence allows us to combine global expertise with cost-effective execution. We serve clients in 25+ countries worldwide!`;
+        return `**Our Global Presence**\n\n🇬🇧 **UK Headquarters** - Strategic vision and client relations\n🇧🇩 **Bangladesh Engineering Hub** - R&D, development, and operations\n🇯🇵 **Japan Engineering Hub** - Advanced AI research and innovation\n\nThis global presence allows us to combine strategic expertise with cost-effective execution and cutting-edge innovation. We serve clients in 25+ countries worldwide!`;
 
       case 'contact':
         return `**Get In Touch**\n\n📧 Email: ${company.email}\n⏱️ Response time: Usually within ${company.responseTime}\n\nWe'd love to hear about your project! Just send us an email with your requirements, and we'll schedule a consultation to discuss how we can help.`;

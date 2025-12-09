@@ -44,11 +44,11 @@ const VisionMission = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <Card className={`h-full p-6 sm:p-8 md:p-10 ${isVision ? 'hover:glow-cyan' : 'hover:glow-purple'} transition-all duration-300`}>
+                <Card className={`h-full p-6 sm:p-8 md:p-10 transition-all duration-300`}>
                   <motion.div 
-                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${item.gradient} mb-6 ${isVision ? 'glow-cyan' : 'glow-purple'} animate-glow-pulse`}
-                    whileHover={{ scale: 1.1, rotate: 360 }}
-                    transition={{ duration: 0.5 }}
+                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${item.gradient} mb-6`}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   >
                     <Icon className="w-8 h-8 text-white" />
                   </motion.div>
@@ -57,7 +57,7 @@ const VisionMission = () => {
                     {item.title}
                   </h3>
                   
-                  <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+                  <p className="text-white text-base sm:text-lg leading-relaxed">
                     {item.description}
                   </p>
                 </Card>

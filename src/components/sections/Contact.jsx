@@ -42,7 +42,7 @@ const Contact = () => {
                 <MessageSquare className="w-8 h-8 text-primary-400" />
               </motion.div>
               <h3 className="text-2xl font-bold text-white mb-2">Send Us a Message</h3>
-              <p className="text-gray-300">We&apos;ll get back to you within 24 hours</p>
+              <p className="text-white">We&apos;ll get back to you within 24 hours</p>
             </div>
             <EnhancedContactForm />
           </div>
@@ -102,11 +102,11 @@ const Contact = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
-                  href="mailto:buildwith@integratedsystems.ai"
+                  href="mailto:buildwith@integrated-systems.ai"
                   className="group inline-flex items-center justify-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-white text-primary-700 font-semibold rounded-lg hover:bg-primary-50 transition-all duration-200 shadow-lg hover:shadow-xl w-full sm:w-auto text-sm sm:text-base"
                 >
                   <Mail className="mr-2 sm:mr-3 w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                  <span className="break-all">buildwith@integratedsystems.ai</span>
+                  <span className="break-all">buildwith@integrated-systems.ai</span>
                   <ArrowRight className="ml-2 sm:ml-3 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </a>
               </div>
@@ -130,15 +130,15 @@ const Contact = () => {
         >
           <motion.div whileHover={{ scale: 1.05 }} className="glassmorphism p-6 rounded-2xl">
             <div className="text-4xl font-bold text-gradient-cyber mb-2">Global</div>
-            <p className="text-gray-300">Reach & Support</p>
+            <p className="text-white">Reach & Support</p>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} className="glassmorphism p-6 rounded-2xl">
             <div className="text-4xl font-bold text-gradient-cyber mb-2">24/7</div>
-            <p className="text-gray-300">AI-Powered Systems</p>
+            <p className="text-white">AI-Powered Systems</p>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} className="glassmorphism p-6 rounded-2xl">
             <div className="text-4xl font-bold text-gradient-cyber mb-2">100%</div>
-            <p className="text-gray-300">Human-Centric</p>
+            <p className="text-white">Human-Centric</p>
           </motion.div>
         </motion.div>
       </div>

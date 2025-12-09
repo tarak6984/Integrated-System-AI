@@ -31,6 +31,11 @@ const EnhancedContactForm = () => {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      
+      console.log('🔍 Loaded EmailJS Config:');
+      console.log('Service ID:', serviceId);
+      console.log('Template ID:', templateId);
+      console.log('Public Key:', publicKey);
 
       // Check if EmailJS is configured
       if (!serviceId || !templateId || !publicKey) {
@@ -51,7 +56,6 @@ const EnhancedContactForm = () => {
         from_email: formData.email,
         company: formData.company || 'Not provided',
         message: formData.message,
-        to_email: 'buildwith@integratedsystems.ai', // Your email
       };
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
@@ -62,10 +66,13 @@ const EnhancedContactForm = () => {
       });
       setFormData({ name: '', email: '', company: '', message: '' });
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('EmailJS Error Details:', error);
+      console.error('Error status:', error.status);
+      console.error('Error text:', error.text);
+      
       setStatus({
         type: 'error',
-        message: 'Sorry, there was an error sending your message. Please try again or email us directly at buildwith@integratedsystems.ai'
+        message: `Sorry, there was an error sending your message. Error: ${error.text || error.message}. Please try again or email us directly at buildwith@integrated-systems.ai`
       });
     } finally {
       setIsSubmitting(false);

@@ -2,10 +2,13 @@ import { motion } from 'framer-motion'
 import { MapPin, TrendingUp, Target, Award } from 'lucide-react'
 import SectionTitle from '../ui/SectionTitle'
 import Card from '../ui/Card'
+import FlagIcon from '../ui/FlagIcon'
 
 const GlobalVision = () => {
   const regions = [
-    { name: 'Bangladesh', status: 'Core Hub', icon: '🇧🇩' },
+    { name: 'United Kingdom', status: 'Headquarters', flagCode: 'GB' },
+    { name: 'Bangladesh', status: 'Engineering Hub', flagCode: 'BD' },
+    { name: 'Japan', status: 'Engineering Hub', flagCode: 'JP' },
     { name: 'Southeast Asia', status: 'Expanding', icon: '🌏' },
     { name: 'Middle East', status: 'Target Market', icon: '🌍' },
     { name: 'Africa', status: 'Frontier Region', icon: '🌍' },
@@ -55,15 +58,15 @@ const GlobalVision = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center text-base sm:text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-12 sm:mb-16"
+          className="text-center text-base sm:text-lg md:text-xl text-white max-w-4xl mx-auto mb-12 sm:mb-16"
         >
-          With <span className="text-primary-400 font-semibold">Bangladesh</span> as our core engineering and support hub, we combine technical expertise 
+          Headquartered in the <span className="text-primary-400 font-semibold">United Kingdom</span>, with engineering hubs in <span className="text-primary-400 font-semibold">Bangladesh</span> and <span className="text-primary-400 font-semibold">Japan</span>, we combine technical expertise 
           with cost-effective scalability. Our operational model allows us to rapidly develop, test, 
           and deploy AI solutions across diverse markets.
         </motion.p>
 
         {/* Regions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-20 max-w-6xl mx-auto">
           {regions.map((region, index) => (
             <motion.div
               key={index}
@@ -73,15 +76,19 @@ const GlobalVision = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05, y: -10 }}
             >
-              <Card className="p-4 sm:p-6 text-center hover:shadow-xl">
+              <Card className="p-6 sm:p-8 text-center hover:shadow-xl">
                 <motion.div 
-                  className="text-5xl mb-4"
+                  className="mb-4 flex items-center justify-center"
                   initial={{ scale: 0, rotate: -180 }}
                   whileInView={{ scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 + 0.2, type: "spring" }}
                 >
-                  {region.icon}
+                  {region.flagCode ? (
+                    <FlagIcon country={region.flagCode} size="80" />
+                  ) : (
+                    <span className="text-5xl">{region.icon}</span>
+                  )}
                 </motion.div>
                 <motion.h3 
                   className="text-lg sm:text-xl font-bold text-white mb-2"
@@ -128,14 +135,14 @@ const GlobalVision = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex items-start space-x-4 glassmorphism p-4 rounded-xl hover:glow-cyan transition-all duration-300"
+                  className="flex items-start space-x-4 glassmorphism p-4 rounded-xl transition-all duration-300"
                 >
-                  <div className="flex-shrink-0 p-3 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl glow-cyan">
+                  <div className="flex-shrink-0 p-3 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl">
                     <Icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h4 className="text-lg sm:text-xl font-bold text-white mb-2">{objective.title}</h4>
-                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed">{objective.description}</p>
+                    <p className="text-white text-sm sm:text-base leading-relaxed">{objective.description}</p>
                   </div>
                 </motion.div>
               )
@@ -151,7 +158,7 @@ const GlobalVision = () => {
           transition={{ duration: 0.6 }}
           className="mt-16 text-center"
         >
-          <Card className="p-6 sm:p-8 md:p-12 bg-gradient-to-br from-primary-500/10 to-accent-500/10 border-2 border-primary-500/30 hover:glow-purple transition-all duration-300" hover={false}>
+          <Card className="p-6 sm:p-8 md:p-12 bg-gradient-to-br from-primary-500/10 to-accent-500/10 border-2 border-primary-500/30 transition-all duration-300" hover={false}>
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-relaxed">
               Integrated Systems AI aims to be more than a product company. 
               We are building a <span className="text-gradient-cyber">platform for sustainable AI innovation</span>.
