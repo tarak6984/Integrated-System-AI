@@ -116,13 +116,6 @@ const VisionVideo = () => {
 
                     {/* Video Card */}
                     <div className="relative glassmorphism rounded-2xl overflow-hidden shadow-2xl">
-                      {/* Video Title Badge */}
-                      {isCurrent && (
-                        <div className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-primary-500/30">
-                          <Play className="w-4 h-4 text-primary-400" />
-                          <span className="text-white font-semibold text-sm">{video.title}</span>
-                        </div>
-                      )}
 
                       {/* Vimeo Video Embed */}
                       <div className="relative aspect-video bg-dark-900">
