@@ -190,7 +190,7 @@ const VisionVideo = () => {
 
                       {/* Video Description - Only show on current */}
                       {isCurrent && (
-                        <div className="p-6 bg-gradient-to-r from-dark-900/95 to-dark-800/95 backdrop-blur-sm border-t border-primary-500/20">
+                        <div className="p-4 bg-gradient-to-r from-dark-900/95 to-dark-800/95 backdrop-blur-sm border-t border-primary-500/20">
                           <p className="text-white text-xs md:text-sm leading-relaxed">
                             {video.description}
                           </p>
