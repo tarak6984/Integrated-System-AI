@@ -82,7 +82,24 @@ const VisionVideo = () => {
           </button>
 
           {/* Carousel Container with Peek Effect */}
-          <div className="relative overflow-visible px-12">
+          <motion.div
+            className="relative overflow-visible px-12"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = offset.x * velocity.x
+
+              // Swipe left (next slide)
+              if (swipe < -500) {
+                nextSlide()
+              }
+              // Swipe right (previous slide)  
+              else if (swipe > 500) {
+                prevSlide()
+              }
+            }}
+          >
             <div className="flex items-center justify-center gap-6">
               {videos.map((video, index) => {
                 const isCurrent = index === currentSlide
@@ -142,7 +159,7 @@ const VisionVideo = () => {
                 )
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* Circular Dot Indicators */}
           <div className="flex justify-center gap-2 mt-8">
@@ -182,7 +199,7 @@ const VisionVideo = () => {
         <div className="absolute top-1/4 left-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl pointer-events-none" />
       </div>
-    </section>
+    </section >
   )
 }
 
