@@ -209,9 +209,9 @@ const VisionVideo = () => {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 rounded-full ${index === currentSlide
-                    ? 'w-2.5 h-2.5 bg-white'
-                    : 'w-2.5 h-2.5 border-2 border-white/60 hover:border-white'
+                className={`transition-all duration-300 rounded-full p-1 ${index === currentSlide
+                    ? 'w-3 h-3 bg-white'
+                    : 'w-3 h-3 border-2 border-white/60 hover:border-white'
                   }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
