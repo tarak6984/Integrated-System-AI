@@ -159,7 +159,7 @@ const VisionVideo = () => {
                       scale: isCurrent ? 1 : 0.75,
                       opacity: isCurrent ? 1 : 0.4,
                       x: isCurrent ? 0 : isNext ? '85%' : '-85%',
-                      zIndex: isCurrent ? 10 : 1
+                      zIndex: isCurrent ? 20 : 15
                     }}
                     transition={{
                       duration: 0.5,
