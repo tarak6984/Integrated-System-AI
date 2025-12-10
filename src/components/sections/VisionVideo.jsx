@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Play, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const VisionVideo = () => {
@@ -36,28 +36,6 @@ const VisionVideo = () => {
     setCurrentSlide(index)
   }
 
-  const slideVariants = {
-    enter: (direction) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
-  }
-
-  const swipeConfidenceThreshold = 10000
-  const swipePower = (offset, velocity) => {
-    return Math.abs(offset) * velocity
-  }
-
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Background Elements */}
@@ -86,12 +64,12 @@ const VisionVideo = () => {
           </motion.p>
         </div>
 
-        {/* Video Carousel */}
-        <div className="relative max-w-5xl mx-auto">
+        {/* Video Carousel - Peek Style */}
+        <div className="relative max-w-6xl mx-auto">
           {/* Navigation Arrows */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glassmorphism border border-primary-500/30 flex items-center justify-center text-white hover:bg-primary-500/20 transition-all duration-300 hover:scale-110"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glassmorphism border border-primary-500/30 flex items-center justify-center text-white hover:bg-primary-500/20 transition-all duration-300 hover:scale-110"
             aria-label="Previous video"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -99,96 +77,104 @@ const VisionVideo = () => {
 
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glassmorphism border border-primary-500/30 flex items-center justify-center text-white hover:bg-primary-500/20 transition-all duration-300 hover:scale-110"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glassmorphism border border-primary-500/30 flex items-center justify-center text-white hover:bg-primary-500/20 transition-all duration-300 hover:scale-110"
             aria-label="Next video"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
 
-          {/* Carousel Container */}
-          <div className="relative overflow-hidden">
-            <AnimatePresence initial={false} custom={currentSlide}>
-              <motion.div
-                key={currentSlide}
-                custom={currentSlide}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 }
-                }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={(e, { offset, velocity }) => {
-                  const swipe = swipePower(offset.x, velocity.x)
+          {/* Carousel Container with Peek Effect */}
+          <div className="relative overflow-visible px-12">
+            <div className="flex items-center justify-center gap-6">
+              {videos.map((video, index) => {
+                const isCurrent = index === currentSlide
+                const isNext = index === (currentSlide + 1) % videos.length
+                const isPrev = index === (currentSlide - 1 + videos.length) % videos.length
 
-                  if (swipe < -swipeConfidenceThreshold) {
-                    nextSlide()
-                  } else if (swipe > swipeConfidenceThreshold) {
-                    prevSlide()
-                  }
-                }}
-                className="relative group"
-              >
-                {/* Glowing Border Effect */}
-                <div className={`absolute -inset-1 bg-gradient-to-r ${videos[currentSlide].gradient} rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-500`} />
+                // Only show current and adjacent videos
+                if (!isCurrent && !isNext && !isPrev) return null
 
-                {/* Video Card */}
-                <div className="relative glassmorphism rounded-2xl overflow-hidden shadow-2xl">
-                  {/* Video Title Badge */}
-                  <div className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-primary-500/30">
-                    <Play className="w-4 h-4 text-primary-400" />
-                    <span className="text-white font-semibold text-sm">{videos[currentSlide].title}</span>
-                  </div>
+                return (
+                  <motion.div
+                    key={video.id}
+                    initial={false}
+                    animate={{
+                      scale: isCurrent ? 1 : 0.8,
+                      opacity: isCurrent ? 1 : 0.3,
+                      x: isCurrent ? 0 : isNext ? '75%' : '-75%',
+                      zIndex: isCurrent ? 10 : 1
+                    }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.32, 0.72, 0, 1]
+                    }}
+                    className={`${isCurrent ? 'relative w-full max-w-3xl' : 'absolute w-full max-w-3xl hidden md:block'}`}
+                    style={{
+                      pointerEvents: isCurrent ? 'auto' : 'none'
+                    }}
+                  >
+                    {/* Glowing Border Effect */}
+                    <div className={`absolute -inset-1 bg-gradient-to-r ${video.gradient} rounded-2xl ${isCurrent ? 'opacity-75 blur-lg' : 'opacity-30 blur-md'} transition-opacity duration-500`} />
 
-                  {/* Vimeo Video Embed */}
-                  <div className="relative aspect-video bg-dark-900">
-                    <iframe
-                      src={`https://player.vimeo.com/video/${videos[currentSlide].videoId}?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0`}
-                      className="absolute top-0 left-0 w-full h-full"
-                      frameBorder="0"
-                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      title={videos[currentSlide].title}
-                    />
-                  </div>
+                    {/* Video Card */}
+                    <div className="relative glassmorphism rounded-2xl overflow-hidden shadow-2xl">
+                      {/* Video Title Badge */}
+                      {isCurrent && (
+                        <div className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-primary-500/30">
+                          <Play className="w-4 h-4 text-primary-400" />
+                          <span className="text-white font-semibold text-sm">{video.title}</span>
+                        </div>
+                      )}
 
-                  {/* Video Description */}
-                  <div className="p-6 bg-gradient-to-r from-dark-900/95 to-dark-800/95 backdrop-blur-sm border-t border-primary-500/20">
-                    <p className="text-white text-sm md:text-base leading-relaxed mb-4">
-                      {videos[currentSlide].description}
-                    </p>
+                      {/* Vimeo Video Embed */}
+                      <div className="relative aspect-video bg-dark-900">
+                        <iframe
+                          src={`https://player.vimeo.com/video/${video.videoId}?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0`}
+                          className="absolute top-0 left-0 w-full h-full"
+                          frameBorder="0"
+                          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          title={video.title}
+                        />
+                      </div>
 
-                    {/* Highlights */}
-                    <div className="flex flex-wrap gap-2">
-                      {videos[currentSlide].highlights.map((highlight, idx) => (
-                        <span
-                          key={idx}
-                          className="inline-flex items-center gap-1 bg-primary-500/20 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/30"
-                        >
-                          <Sparkles className="w-3 h-3" />
-                          {highlight}
-                        </span>
-                      ))}
+                      {/* Video Description - Only show on current */}
+                      {isCurrent && (
+                        <div className="p-6 bg-gradient-to-r from-dark-900/95 to-dark-800/95 backdrop-blur-sm border-t border-primary-500/20">
+                          <p className="text-white text-sm md:text-base leading-relaxed mb-4">
+                            {video.description}
+                          </p>
+
+                          {/* Highlights */}
+                          <div className="flex flex-wrap gap-2">
+                            {video.highlights.map((highlight, idx) => (
+                              <span
+                                key={idx}
+                                className="inline-flex items-center gap-1 bg-primary-500/20 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/30"
+                              >
+                                <Sparkles className="w-3 h-3" />
+                                {highlight}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                  </motion.div>
+                )
+              })}
+            </div>
           </div>
 
-          {/* Dot Indicators */}
-          <div className="flex justify-center gap-3 mt-8">
+          {/* Circular Dot Indicators */}
+          <div className="flex justify-center gap-2 mt-8">
             {videos.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`transition-all duration-300 rounded-full ${index === currentSlide
-                    ? 'w-8 h-3 bg-gradient-to-r from-primary-500 to-accent-500'
-                    : 'w-3 h-3 bg-white/30 hover:bg-white/50'
+                  ? 'w-3 h-3 bg-gradient-to-r from-primary-500 to-accent-500'
+                  : 'w-3 h-3 bg-white/30 hover:bg-white/50'
                   }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
