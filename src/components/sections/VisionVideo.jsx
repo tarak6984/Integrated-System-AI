@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Play, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Play, Sparkles } from 'lucide-react'
 
 const VisionVideo = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -64,23 +64,6 @@ const VisionVideo = () => {
 
         {/* Video Carousel - Peek Style */}
         <div className="relative max-w-6xl mx-auto">
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glassmorphism border border-primary-500/30 flex items-center justify-center text-white hover:bg-primary-500/20 transition-all duration-300 hover:scale-110"
-            aria-label="Previous video"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full glassmorphism border border-primary-500/30 flex items-center justify-center text-white hover:bg-primary-500/20 transition-all duration-300 hover:scale-110"
-            aria-label="Next video"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
           {/* Carousel Container with Peek Effect */}
           <motion.div
             className="relative overflow-visible px-12"
