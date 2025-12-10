@@ -9,17 +9,15 @@ const VisionVideo = () => {
     {
       id: 1,
       title: 'Neural Starlink Vision',
-      description: 'Witness how our Neural AI Systems connect and empower industries worldwide through intelligent automation and data-driven insights',
+      description: 'Connecting industries worldwide through intelligent automation',
       videoId: '1144819961',
-      highlights: ['Neural Networks', 'Global Integration', 'Data Intelligence'],
       gradient: 'from-primary-500 via-accent-500 to-primary-500'
     },
     {
       id: 2,
       title: 'AI As Teammate',
-      description: 'Discover how AI becomes your collaborative partner, augmenting human capabilities and transforming the way teams work together',
+      description: 'Augmenting human capabilities through collaborative AI',
       videoId: '1145146496',
-      highlights: ['Human-AI Collaboration', 'Team Augmentation', 'Workflow Enhancement'],
       gradient: 'from-accent-500 via-primary-500 to-accent-500'
     }
   ]
@@ -141,22 +139,9 @@ const VisionVideo = () => {
                       {/* Video Description - Only show on current */}
                       {isCurrent && (
                         <div className="p-6 bg-gradient-to-r from-dark-900/95 to-dark-800/95 backdrop-blur-sm border-t border-primary-500/20">
-                          <p className="text-white text-sm md:text-base leading-relaxed mb-4">
+                          <p className="text-white text-sm md:text-base leading-relaxed">
                             {video.description}
                           </p>
-
-                          {/* Highlights */}
-                          <div className="flex flex-wrap gap-2">
-                            {video.highlights.map((highlight, idx) => (
-                              <span
-                                key={idx}
-                                className="inline-flex items-center gap-1 bg-primary-500/20 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/30"
-                              >
-                                <Sparkles className="w-3 h-3" />
-                                {highlight}
-                              </span>
-                            ))}
-                          </div>
                         </div>
                       )}
                     </div>
