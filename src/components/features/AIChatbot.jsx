@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Send, X, Bot, User, Minimize2, Maximize2 } from 'lucide-react';
-import { chatbotService } from '../../services/chatbotService';
+import { MessageCircle, Send, X, Bot, User, Minimize2, Maximize2, Sparkles } from 'lucide-react';
+import { groqChatbotService } from '../../services/groqChatbotService';
 
 const AIChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,8 +46,8 @@ const AIChatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await chatbotService.sendMessage(inputMessage, messages);
-      
+      const response = await groqChatbotService.sendMessage(inputMessage, messages);
+
       const assistantMessage = {
         role: 'assistant',
         content: response,
@@ -110,9 +110,9 @@ const AIChatbot = () => {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 100, scale: 0.8 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0, 
+            animate={{
+              opacity: 1,
+              y: 0,
               scale: 1,
               height: isMinimized ? 'auto' : '600px'
             }}
@@ -127,10 +127,17 @@ const AIChatbot = () => {
                   <Bot className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold">AI Assistant</h3>
+                  <h3 className="text-white font-bold flex items-center gap-2">
+                    AI Assistant
+                    {groqChatbotService.isGroqActive() && (
+                      <Sparkles className="w-4 h-4 text-yellow-300 animate-pulse" />
+                    )}
+                  </h3>
                   <div className="flex items-center gap-1">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                    <span className="text-white/80 text-xs">Online</span>
+                    <span className="text-white/80 text-xs">
+                      {groqChatbotService.isGroqActive() ? 'Groq AI' : 'Local Mode'}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -163,11 +170,10 @@ const AIChatbot = () => {
                       className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div className={`flex gap-2 max-w-[80%] ${message.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                          message.role === 'user' 
-                            ? 'bg-gradient-to-br from-primary-600 to-primary-700' 
-                            : 'bg-gradient-to-br from-accent-600 to-accent-700'
-                        }`}>
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${message.role === 'user'
+                          ? 'bg-gradient-to-br from-primary-600 to-primary-700'
+                          : 'bg-gradient-to-br from-accent-600 to-accent-700'
+                          }`}>
                           {message.role === 'user' ? (
                             <User className="w-4 h-4 text-white" />
                           ) : (
@@ -175,11 +181,10 @@ const AIChatbot = () => {
                           )}
                         </div>
                         <div>
-                          <div className={`rounded-2xl p-3 ${
-                            message.role === 'user'
-                              ? 'bg-gradient-to-br from-primary-600 to-primary-700 text-white'
-                              : 'bg-white text-dark-900 border border-gray-200'
-                          }`}>
+                          <div className={`rounded-2xl p-3 ${message.role === 'user'
+                            ? 'bg-gradient-to-br from-primary-600 to-primary-700 text-white'
+                            : 'bg-white text-dark-900 border border-gray-200'
+                            }`}>
                             <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
                           </div>
                           <span className="text-xs text-gray-500 mt-1 block">
@@ -189,7 +194,7 @@ const AIChatbot = () => {
                       </div>
                     </motion.div>
                   ))}
-                  
+
                   {isLoading && (
                     <motion.div
                       initial={{ opacity: 0 }}
@@ -222,7 +227,7 @@ const AIChatbot = () => {
                       </div>
                     </motion.div>
                   )}
-                  
+
                   <div ref={messagesEndRef} />
                 </div>
 
@@ -254,7 +259,7 @@ const AIChatbot = () => {
                       onChange={(e) => setInputMessage(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder="Type your message..."
-                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       disabled={isLoading}
                     />
                     <button
