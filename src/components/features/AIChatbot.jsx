@@ -136,7 +136,7 @@ const AIChatbot = () => {
                   <div className="flex items-center gap-1">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                     <span className="text-white/80 text-xs">
-                      {groqChatbotService.isGroqActive() ? 'Groq AI' : 'Local Mode'}
+                      {groqChatbotService.isGroqActive() ? 'AI Powered' : 'Online'}
                     </span>
                   </div>
                 </div>
