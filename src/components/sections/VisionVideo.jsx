@@ -99,16 +99,16 @@ const VisionVideo = () => {
                     key={video.id}
                     initial={false}
                     animate={{
-                      scale: isCurrent ? 1 : 0.8,
-                      opacity: isCurrent ? 1 : 0.3,
-                      x: isCurrent ? 0 : isNext ? '75%' : '-75%',
+                      scale: isCurrent ? 1 : 0.75,
+                      opacity: isCurrent ? 1 : 0.4,
+                      x: isCurrent ? 0 : isNext ? '85%' : '-85%',
                       zIndex: isCurrent ? 10 : 1
                     }}
                     transition={{
                       duration: 0.5,
                       ease: [0.32, 0.72, 0, 1]
                     }}
-                    className={`${isCurrent ? 'relative w-full max-w-3xl' : 'absolute w-full max-w-3xl hidden md:block'}`}
+                    className={`${isCurrent ? 'relative w-full max-w-3xl' : 'absolute w-full max-w-3xl'}`}
                     style={{
                       pointerEvents: isCurrent ? 'auto' : 'none'
                     }}
