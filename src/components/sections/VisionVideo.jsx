@@ -179,11 +179,12 @@ const VisionVideo = () => {
                       {/* Vimeo Video Embed */}
                       <div className="relative aspect-video bg-dark-900">
                         <iframe
-                          src={`https://player.vimeo.com/video/${video.videoId}?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0`}
+                          src={`https://player.vimeo.com/video/${video.videoId}?h=0&title=0&byline=0&portrait=0`}
                           className="absolute top-0 left-0 w-full h-full"
                           frameBorder="0"
-                          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                          referrerPolicy="strict-origin-when-cross-origin"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowFullScreen
+                          loading="lazy"
                           title={video.title}
                         />
                       </div>
@@ -210,8 +211,8 @@ const VisionVideo = () => {
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`transition-all duration-300 rounded-full p-1 ${index === currentSlide
-                    ? 'w-3 h-3 bg-white'
-                    : 'w-3 h-3 border-2 border-white/60 hover:border-white'
+                  ? 'w-3 h-3 bg-white'
+                  : 'w-3 h-3 border-2 border-white/60 hover:border-white'
                   }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
