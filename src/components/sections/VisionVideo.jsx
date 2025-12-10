@@ -106,7 +106,7 @@ const VisionVideo = () => {
                       duration: 0.5,
                       ease: [0.32, 0.72, 0, 1]
                     }}
-                    className={`${isCurrent ? 'relative w-full max-w-3xl' : 'absolute w-full max-w-3xl'}`}
+                    className={`${isCurrent ? 'relative w-full max-w-4xl' : 'absolute w-full max-w-4xl'}`}
                     style={{
                       pointerEvents: isCurrent ? 'auto' : 'none'
                     }}
@@ -139,7 +139,7 @@ const VisionVideo = () => {
                       {/* Video Description - Only show on current */}
                       {isCurrent && (
                         <div className="p-6 bg-gradient-to-r from-dark-900/95 to-dark-800/95 backdrop-blur-sm border-t border-primary-500/20">
-                          <p className="text-white text-sm md:text-base leading-relaxed">
+                          <p className="text-white text-xs md:text-sm leading-relaxed">
                             {video.description}
                           </p>
                         </div>
