@@ -179,12 +179,11 @@ const VisionVideo = () => {
                       {/* Vimeo Video Embed */}
                       <div className="relative aspect-video bg-dark-900">
                         <iframe
-                          src={`https://player.vimeo.com/video/${video.videoId}?h=0&title=0&byline=0&portrait=0`}
+                          src={`https://player.vimeo.com/video/${video.videoId}?badge=0&autopause=0&player_id=0&app_id=58479`}
                           className="absolute top-0 left-0 w-full h-full"
                           frameBorder="0"
-                          allow="autoplay; fullscreen; picture-in-picture"
+                          allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
                           allowFullScreen
-                          loading="lazy"
                           title={video.title}
                         />
                       </div>
