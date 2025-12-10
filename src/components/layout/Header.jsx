@@ -43,23 +43,26 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? 'bg-black/95 backdrop-blur-md shadow-lg shadow-primary-500/10 border-b border-primary-500/20'
           : 'bg-black/30 backdrop-blur-sm'
-      }`}
+        }`}
     >
       <nav className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center group"
+            onClick={(e) => {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
           >
-            <img 
+            <img
               src="/logo-new.png"
-              alt="Integrated Systems AI" 
-              className="h-12 w-auto transition-all duration-300 group-hover:scale-105 drop-shadow-[0_0_10px_rgba(0,191,255,0.5)]"
+              alt="Integrated Systems AI"
+              className="h-12 w-auto transition-all duration-300 group-hover:scale-105 drop-shadow-[0_0_10px_rgba(0,191,255,0.5)] cursor-pointer"
             />
           </Link>
 
@@ -76,11 +79,11 @@ const Header = () => {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 transition-all group-hover:w-full shadow-[0_0_10px_rgba(0,191,255,0.5)]"></span>
               </a>
             ))}
-            
+
             {/* CTA Button */}
             <a href="#contact">
-              <Button 
-                variant="primary" 
+              <Button
+                variant="primary"
                 size="sm"
                 className="glow-cyan"
               >
@@ -120,12 +123,12 @@ const Header = () => {
                   {item.name}
                 </a>
               ))}
-              
+
               {/* Mobile CTA Button */}
               <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button 
-                  variant="primary" 
-                  size="sm" 
+                <Button
+                  variant="primary"
+                  size="sm"
                   className="w-full glow-cyan"
                 >
                   Get In Touch
