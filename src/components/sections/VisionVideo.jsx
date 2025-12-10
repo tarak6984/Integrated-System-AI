@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Sparkles } from 'lucide-react'
 
@@ -34,6 +34,47 @@ const VisionVideo = () => {
     setCurrentSlide(index)
   }
 
+  // Add horizontal scroll support for touchpad
+  useEffect(() => {
+    let scrollTimeout
+    let scrollAmount = 0
+
+    const handleWheel = (e) => {
+      // Only handle horizontal scroll
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault()
+        scrollAmount += e.deltaX
+
+        // Clear previous timeout
+        clearTimeout(scrollTimeout)
+
+        // Wait for scroll to finish before navigating
+        scrollTimeout = setTimeout(() => {
+          if (scrollAmount > 50) {
+            // Scrolled right, go to next slide
+            nextSlide()
+          } else if (scrollAmount < -50) {
+            // Scrolled left, go to previous slide
+            prevSlide()
+          }
+          scrollAmount = 0
+        }, 150)
+      }
+    }
+
+    const carouselElement = document.getElementById('video-carousel')
+    if (carouselElement) {
+      carouselElement.addEventListener('wheel', handleWheel, { passive: false })
+    }
+
+    return () => {
+      if (carouselElement) {
+        carouselElement.removeEventListener('wheel', handleWheel)
+      }
+      clearTimeout(scrollTimeout)
+    }
+  }, [currentSlide])
+
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Background Elements */}
@@ -66,6 +107,7 @@ const VisionVideo = () => {
         <div className="relative max-w-6xl mx-auto">
           {/* Carousel Container with Peek Effect */}
           <motion.div
+            id="video-carousel"
             className="relative overflow-visible px-12"
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
