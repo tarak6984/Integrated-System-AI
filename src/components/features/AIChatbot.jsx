@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Send, X, Bot, User, Minimize2, Maximize2, Sparkles } from 'lucide-react';
+import { MessageCircle, Send, X, Bot, User, Minimize2, Maximize2, Sparkles, AlertCircle } from 'lucide-react';
 import { groqChatbotService } from '../../services/groqChatbotService';
+import { chatbotLimiter } from '../../utils/rateLimiter';
+import { sanitizeInput, validateLength } from '../../utils/sanitize';
 
 const AIChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +17,7 @@ const AIChatbot = () => {
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -35,9 +38,26 @@ const AIChatbot = () => {
   const handleSendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
 
+    // Clear any previous errors
+    setError('');
+
+    // Check rate limit
+    if (!chatbotLimiter.canMakeRequest()) {
+      const waitTime = Math.ceil(chatbotLimiter.getTimeUntilNextRequest() / 1000);
+      setError(`Please wait ${waitTime} seconds before sending another message`);
+      return;
+    }
+
+    // Sanitize and validate input
+    const sanitizedMessage = sanitizeInput(inputMessage);
+    if (!validateLength(sanitizedMessage, 1, 500)) {
+      setError('Message must be between 1 and 500 characters');
+      return;
+    }
+
     const userMessage = {
       role: 'user',
-      content: inputMessage,
+      content: sanitizedMessage,
       timestamp: new Date()
     };
 
@@ -46,7 +66,7 @@ const AIChatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await groqChatbotService.sendMessage(inputMessage, messages);
+      const response = await groqChatbotService.sendMessage(sanitizedMessage, messages);
 
       const assistantMessage = {
         role: 'assistant',
@@ -245,6 +265,16 @@ const AIChatbot = () => {
                           {question}
                         </button>
                       ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Error Display */}
+                {error && (
+                  <div className="px-4 py-2 bg-red-50 border-t border-red-200">
+                    <div className="flex items-center gap-2 text-red-600 text-sm">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                      <span>{error}</span>
                     </div>
                   </div>
                 )}

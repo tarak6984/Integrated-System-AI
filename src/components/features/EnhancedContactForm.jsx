@@ -3,13 +3,16 @@ import { motion } from 'framer-motion';
 import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import Button from '../ui/Button';
+import { contactFormLimiter } from '../../utils/rateLimiter';
+import { sanitizeInput, validateEmail, validateLength } from '../../utils/sanitize';
 
 const EnhancedContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
-    message: ''
+    message: '',
+    website: '' // Honeypot field
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,12 +29,58 @@ const EnhancedContactForm = () => {
     setIsSubmitting(true);
     setStatus({ type: '', message: '' });
 
+    // Honeypot check - if filled, it's a bot
+    if (formData.website) {
+      // Silently reject bot submission
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Check rate limit
+    if (!contactFormLimiter.canMakeRequest()) {
+      const waitTime = Math.ceil(contactFormLimiter.getTimeUntilNextRequest() / 1000 / 60);
+      setStatus({
+        type: 'error',
+        message: `Too many submissions. Please wait ${waitTime} minute(s) before trying again.`
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validate email
+    if (!validateEmail(formData.email)) {
+      setStatus({
+        type: 'error',
+        message: 'Please enter a valid email address.'
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validate message length
+    if (!validateLength(formData.message, 10, 1000)) {
+      setStatus({
+        type: 'error',
+        message: 'Message must be between 10 and 1000 characters.'
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Sanitize inputs
+    const sanitizedData = {
+      name: sanitizeInput(formData.name),
+      email: sanitizeInput(formData.email),
+      company: sanitizeInput(formData.company),
+      message: sanitizeInput(formData.message)
+    };
+
     try {
       // EmailJS configuration from environment variables
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-      
+
       console.log('🔍 Loaded EmailJS Config:');
       console.log('Service ID:', serviceId);
       console.log('Template ID:', templateId);
@@ -46,30 +95,30 @@ const EnhancedContactForm = () => {
           type: 'success',
           message: 'Thank you! Your message has been received. We\'ll get back to you within 24 hours. (Demo mode - EmailJS not configured)'
         });
-        setFormData({ name: '', email: '', company: '', message: '' });
+        setFormData({ name: '', email: '', company: '', message: '', website: '' });
         return;
       }
 
       // Send email using EmailJS
       const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        company: formData.company || 'Not provided',
-        message: formData.message,
+        from_name: sanitizedData.name,
+        from_email: sanitizedData.email,
+        company: sanitizedData.company || 'Not provided',
+        message: sanitizedData.message,
       };
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
-      
+
       setStatus({
         type: 'success',
         message: 'Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.'
       });
-      setFormData({ name: '', email: '', company: '', message: '' });
+      setFormData({ name: '', email: '', company: '', message: '', website: '' });
     } catch (error) {
       console.error('EmailJS Error Details:', error);
       console.error('Error status:', error.status);
       console.error('Error text:', error.text);
-      
+
       setStatus({
         type: 'error',
         message: `Sorry, there was an error sending your message. Error: ${error.text || error.message}. Please try again or email us directly at buildwith@integrated-systems.ai`
@@ -154,11 +203,10 @@ const EnhancedContactForm = () => {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`p-4 rounded-lg flex items-start gap-3 glassmorphism ${
-              status.type === 'success' 
-                ? 'border-green-500/50 bg-green-500/10 text-green-300' 
+            className={`p-4 rounded-lg flex items-start gap-3 glassmorphism ${status.type === 'success'
+                ? 'border-green-500/50 bg-green-500/10 text-green-300'
                 : 'border-red-500/50 bg-red-500/10 text-red-300'
-            }`}
+              }`}
           >
             {status.type === 'success' ? (
               <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5 animate-bounce-slow" />

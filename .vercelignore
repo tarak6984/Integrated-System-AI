@@ -1,8 +1,17 @@
-server/
-*.sqlite
-*.sqlite-shm
-*.sqlite-wal
+# Environment files - never deploy these
 .env
 .env.local
-node_modules/
-*.log
+.env*.local
+
+# Development files
+node_modules
+.git
+
+# Documentation files
+*.md
+!README.md
+
+# Large files
+*.mp4
+*.mov
+*.avi
