@@ -51,7 +51,7 @@ class RateLimiter {
 }
 
 // Create rate limiters for different features
-export const chatbotLimiter = new RateLimiter(10, 60000) // 10 requests per minute
-export const contactFormLimiter = new RateLimiter(3, 300000) // 3 requests per 5 minutes
+export const chatbotLimiter = new RateLimiter(20, 60000) // 20 requests per minute
+export const contactFormLimiter = new RateLimiter(5, 600000) // 5 requests per 10 minutes
 
 export default RateLimiter
