@@ -17,6 +17,18 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true
+    sourcemap: false, // Disable sourcemaps in production for smaller bundle
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'animation': ['framer-motion'],
+          'icons': ['lucide-react'],
+          'email': ['@emailjs/browser'],
+          'ai': ['groq-sdk']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000
   }
 })

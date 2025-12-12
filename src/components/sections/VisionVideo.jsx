@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const VisionVideo = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [shouldLoadVideos, setShouldLoadVideos] = useState(false)
+  const sectionRef = useRef(null)
 
   const videos = [
     {
@@ -33,6 +35,25 @@ const VisionVideo = () => {
   const goToSlide = (index) => {
     setCurrentSlide(index)
   }
+
+  // Lazy load videos when section is near viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideos(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px' } // Load 200px before entering viewport
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   // Add horizontal scroll support for touchpad
   useEffect(() => {
@@ -76,7 +97,7 @@ const VisionVideo = () => {
   }, [currentSlide])
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section ref={sectionRef} className="relative py-20 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary-950/20 to-transparent pointer-events-none" />
 
@@ -176,16 +197,26 @@ const VisionVideo = () => {
                     {/* Video Card */}
                     <div className="relative glassmorphism rounded-2xl overflow-hidden shadow-2xl">
 
-                      {/* Vimeo Video Embed */}
+                      {/* Vimeo Video Embed - Lazy loaded */}
                       <div className="relative aspect-video bg-dark-900">
-                        <iframe
-                          src={`https://player.vimeo.com/video/${video.videoId}?badge=0&autopause=0&player_id=0&app_id=58479`}
-                          className="absolute top-0 left-0 w-full h-full"
-                          frameBorder="0"
-                          allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-                          allowFullScreen
-                          title={video.title}
-                        />
+                        {shouldLoadVideos ? (
+                          <iframe
+                            src={`https://player.vimeo.com/video/${video.videoId}?badge=0&autopause=0&player_id=0&app_id=58479`}
+                            className="absolute top-0 left-0 w-full h-full"
+                            frameBorder="0"
+                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                            allowFullScreen
+                            title={video.title}
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-dark-800 to-dark-900">
+                            <div className="text-center">
+                              <div className="w-16 h-16 border-4 border-primary-500/30 border-t-primary-500 rounded-full animate-spin mx-auto mb-4" />
+                              <p className="text-gray-400 text-sm">Loading video...</p>
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       {/* Video Description - Only show on current */}
