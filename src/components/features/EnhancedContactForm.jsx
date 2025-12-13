@@ -227,27 +227,6 @@ const EnhancedContactForm = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Status Message */}
-      {status.message && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className={`p-4 rounded-lg flex items-start gap-3 ${status.type === 'success'
-            ? 'bg-green-500/10 border border-green-500/30'
-            : 'bg-red-500/10 border border-red-500/30'
-            }`}
-        >
-          {status.type === 'success' ? (
-            <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-          ) : (
-            <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-          )}
-          <p className={`text-sm ${status.type === 'success' ? 'text-green-300' : 'text-red-300'}`}>
-            {status.message}
-          </p>
-        </motion.div>
-      )}
-
       {/* Row 1: Full Name & Company */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="group">
@@ -502,6 +481,27 @@ const EnhancedContactForm = () => {
           </span>
         )}
       </Button>
+
+      {/* Status Message */}
+      {status.message && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`p-4 rounded-lg flex items-start gap-3 ${status.type === 'success'
+            ? 'bg-green-500/10 border border-green-500/30'
+            : 'bg-red-500/10 border border-red-500/30'
+            }`}
+        >
+          {status.type === 'success' ? (
+            <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+          ) : (
+            <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+          )}
+          <p className={`text-sm ${status.type === 'success' ? 'text-green-300' : 'text-red-300'}`}>
+            {status.message}
+          </p>
+        </motion.div>
+      )}
     </motion.form>
   );
 };

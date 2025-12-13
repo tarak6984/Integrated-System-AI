@@ -95,7 +95,11 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 transition-colors text-white hover:text-primary-400"
+            className="lg:hidden p-3 transition-colors text-white hover:text-primary-400 active:scale-95"
+            aria-label="Toggle mobile menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            style={{ minWidth: '44px', minHeight: '44px' }}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -106,11 +110,13 @@ const Header = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className="lg:hidden bg-black/95 backdrop-blur-md border-t border-primary-500/20 overflow-hidden"
+            style={{ pointerEvents: 'auto' }}
           >
             <div className="container-custom py-4 space-y-4">
               {location.pathname === '/' && navItems.map((item) => (
@@ -118,18 +124,18 @@ const Header = () => {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => scrollToSection(e, item.href)}
-                  className="block py-2 text-white hover:text-primary-400 font-medium transition-colors"
+                  className="block py-2 text-white hover:text-primary-400 font-medium transition-colors touch-manipulation"
                 >
                   {item.name}
                 </a>
               ))}
 
               {/* Mobile CTA Button */}
-              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+              <a href="#contact" onClick={(e) => scrollToSection(e, '#contact')}>
                 <Button
                   variant="primary"
                   size="sm"
-                  className="w-full glow-cyan"
+                  className="w-full glow-cyan touch-manipulation"
                 >
                   Get In Touch
                 </Button>

@@ -145,6 +145,12 @@
     -webkit-text-fill-color: transparent;
     animation: shimmer 3s linear infinite;
   }
+
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
 }
 
 /* Custom scrollbar */
